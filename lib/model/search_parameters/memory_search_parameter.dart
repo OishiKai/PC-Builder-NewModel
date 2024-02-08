@@ -1,12 +1,10 @@
-import 'package:custom_pc/domain/search_parameter_parser/memory_search_parameter_parser.dart';
-import 'package:custom_pc/models/category_search_parameter.dart';
+import '../category_search_parameter.dart';
 
 class MemorySearchParameter extends CategorySearchParameter {
+  MemorySearchParameter(this.volume, this.interface, this.type);
   final List<PartsSearchParameter> volume;
   final List<PartsSearchParameter> interface;
   final List<PartsSearchParameter> type;
-
-  MemorySearchParameter(this.volume, this.interface, this.type);
 
   @override
   List<Map<String, List<PartsSearchParameter>>> alignParameters() {
@@ -19,18 +17,18 @@ class MemorySearchParameter extends CategorySearchParameter {
 
   @override
   CategorySearchParameter clearSelectedParameter() {
-    final List<PartsSearchParameter> clearVolume = [];
-    for (var element in volume) {
+    final clearVolume = <PartsSearchParameter>[];
+    for (final element in volume) {
       element.isSelect = false;
       clearVolume.add(element);
     }
-    final List<PartsSearchParameter> clearInterface = [];
-    for (var element in interface) {
+    final clearInterface = <PartsSearchParameter>[];
+    for (final element in interface) {
       element.isSelect = false;
       clearInterface.add(element);
     }
-    final List<PartsSearchParameter> clearType = [];
-    for (var element in type) {
+    final clearType = <PartsSearchParameter>[];
+    for (final element in type) {
       element.isSelect = false;
       clearType.add(element);
     }
@@ -40,18 +38,18 @@ class MemorySearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameters() {
-    List<String> params = [];
-    for (var element in volume) {
+    final params = <String>[];
+    for (final element in volume) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in interface) {
+    for (final element in interface) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in type) {
+    for (final element in type) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
@@ -61,18 +59,18 @@ class MemorySearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameterNames() {
-    List<String> params = [];
-    for (var element in volume) {
+    final params = <String>[];
+    for (final element in volume) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in interface) {
+    for (final element in interface) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in type) {
+    for (final element in type) {
       if (element.isSelect) {
         params.add(element.name);
       }
@@ -81,23 +79,18 @@ class MemorySearchParameter extends CategorySearchParameter {
   }
 
   @override
-  String standardPage() {
-    return MemorySearchParameterParser.standardPage;
-  }
-
-  @override
   CategorySearchParameter toggleParameterSelect(String paramName, int index) {
     switch (paramName) {
       case '容量(一枚あたり)':
-        var toggleVolume = volume;
+        final toggleVolume = volume;
         toggleVolume[index].isSelect = !volume[index].isSelect;
         return MemorySearchParameter(toggleVolume, interface, type);
       case 'インターフェース':
-        var toggleInterface = interface;
+        final toggleInterface = interface;
         toggleInterface[index].isSelect = !interface[index].isSelect;
         return MemorySearchParameter(volume, toggleInterface, type);
       case '規格':
-        var toggleType = type;
+        final toggleType = type;
         toggleType[index].isSelect = !type[index].isSelect;
         return MemorySearchParameter(volume, interface, toggleType);
       default:

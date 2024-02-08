@@ -1,44 +1,44 @@
-import 'package:custom_pc/models/category_search_parameter.dart';
+import '../category_search_parameter.dart';
 
 class PowerUnitSearchParameter extends CategorySearchParameter {
+  PowerUnitSearchParameter(this.supportTypes, this.powerSupplyCapacities);
   final List<PartsSearchParameter> supportTypes;
-  final List<PartsSearchParameter> powerSupplyCapacitys;
-
-  PowerUnitSearchParameter(this.supportTypes, this.powerSupplyCapacitys);
+  final List<PartsSearchParameter> powerSupplyCapacities;
 
   @override
   List<Map<String, List<PartsSearchParameter>>> alignParameters() {
     return [
       {'対応規格': supportTypes},
-      {'電源容量': powerSupplyCapacitys},
+      {'電源容量': powerSupplyCapacities},
     ];
   }
 
   @override
   CategorySearchParameter clearSelectedParameter() {
-    final List<PartsSearchParameter> clearSupportTypes = [];
-    for (var element in supportTypes) {
+    final clearSupportTypes = <PartsSearchParameter>[];
+    for (final element in supportTypes) {
       element.isSelect = false;
       clearSupportTypes.add(element);
     }
-    final List<PartsSearchParameter> clearPowerSupplyCapacitys = [];
-    for (var element in powerSupplyCapacitys) {
+    final clearPowerSupplyCapacities = <PartsSearchParameter>[];
+    for (final element in powerSupplyCapacities) {
       element.isSelect = false;
-      clearPowerSupplyCapacitys.add(element);
+      clearPowerSupplyCapacities.add(element);
     }
 
-    return PowerUnitSearchParameter(clearSupportTypes, clearPowerSupplyCapacitys);
+    return PowerUnitSearchParameter(
+        clearSupportTypes, clearPowerSupplyCapacities);
   }
 
   @override
   List<String> selectedParameters() {
-    List<String> params = [];
-    for (var element in supportTypes) {
+    final params = <String>[];
+    for (final element in supportTypes) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in powerSupplyCapacitys) {
+    for (final element in powerSupplyCapacities) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
@@ -48,13 +48,14 @@ class PowerUnitSearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameterNames() {
-    List<String> params = [];
-    for (var element in supportTypes) {
+    final params = <String>[];
+    for (final element in supportTypes) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in powerSupplyCapacitys) {
+
+    for (final element in powerSupplyCapacities) {
       if (element.isSelect) {
         params.add(element.name);
       }
@@ -63,21 +64,26 @@ class PowerUnitSearchParameter extends CategorySearchParameter {
   }
 
   @override
-  String standardPage() {
-    return 'https://kakaku.com/pc/power-supply/itemlist.aspx';
-  }
-
-  @override
   CategorySearchParameter toggleParameterSelect(String paramName, int index) {
     switch (paramName) {
       case '対応規格':
-        var toggleSupportTypes = supportTypes;
-        toggleSupportTypes[index].isSelect = !toggleSupportTypes[index].isSelect;
-        return PowerUnitSearchParameter(toggleSupportTypes, powerSupplyCapacitys);
+        final toggleSupportTypes = supportTypes;
+        toggleSupportTypes[index].isSelect =
+            !toggleSupportTypes[index].isSelect;
+        return PowerUnitSearchParameter(
+          toggleSupportTypes,
+          powerSupplyCapacities,
+        );
+
       case '電源容量':
-        var togglePowerSupplyCapacitys = powerSupplyCapacitys;
-        togglePowerSupplyCapacitys[index].isSelect = !togglePowerSupplyCapacitys[index].isSelect;
-        return PowerUnitSearchParameter(supportTypes, togglePowerSupplyCapacitys);
+        final togglePowerSupplyCapacities = powerSupplyCapacities;
+        togglePowerSupplyCapacities[index].isSelect =
+            !togglePowerSupplyCapacities[index].isSelect;
+        return PowerUnitSearchParameter(
+          supportTypes,
+          togglePowerSupplyCapacities,
+        );
+
       default:
         return this;
     }

@@ -1,12 +1,10 @@
-import 'package:custom_pc/domain/search_parameter_parser/ssd_search_parameter_parser.dart';
-import 'package:custom_pc/models/category_search_parameter.dart';
+import '../category_search_parameter.dart';
 
 class SsdSearchParameter extends CategorySearchParameter {
+  SsdSearchParameter(this.volumes, this.type, this.interface);
   final List<PartsSearchParameter> volumes;
   final List<PartsSearchParameter> type;
   final List<PartsSearchParameter> interface;
-
-  SsdSearchParameter(this.volumes, this.type, this.interface);
 
   @override
   List<Map<String, List<PartsSearchParameter>>> alignParameters() {
@@ -19,18 +17,18 @@ class SsdSearchParameter extends CategorySearchParameter {
 
   @override
   CategorySearchParameter clearSelectedParameter() {
-    final List<PartsSearchParameter> clearVolumes = [];
-    for (var element in volumes) {
+    final clearVolumes = <PartsSearchParameter>[];
+    for (final element in volumes) {
       element.isSelect = false;
       clearVolumes.add(element);
     }
-    final List<PartsSearchParameter> clearType = [];
-    for (var element in type) {
+    final clearType = <PartsSearchParameter>[];
+    for (final element in type) {
       element.isSelect = false;
       clearType.add(element);
     }
-    final List<PartsSearchParameter> clearInterface = [];
-    for (var element in interface) {
+    final clearInterface = <PartsSearchParameter>[];
+    for (final element in interface) {
       element.isSelect = false;
       clearInterface.add(element);
     }
@@ -40,18 +38,18 @@ class SsdSearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameters() {
-    List<String> params = [];
-    for (var element in volumes) {
+    final params = <String>[];
+    for (final element in volumes) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in type) {
+    for (final element in type) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in interface) {
+    for (final element in interface) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
@@ -61,18 +59,18 @@ class SsdSearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameterNames() {
-    List<String> params = [];
-    for (var element in volumes) {
+    final params = <String>[];
+    for (final element in volumes) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in type) {
+    for (final element in type) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in interface) {
+    for (final element in interface) {
       if (element.isSelect) {
         params.add(element.name);
       }
@@ -81,24 +79,31 @@ class SsdSearchParameter extends CategorySearchParameter {
   }
 
   @override
-  String standardPage() {
-    return SsdSearchParameterParser.standardPage;
-  }
-
-  @override
   CategorySearchParameter toggleParameterSelect(String paramName, int index) {
     if (paramName == '容量') {
-      var toggleVolumes = volumes;
+      final toggleVolumes = volumes;
       toggleVolumes[index].isSelect = !volumes[index].isSelect;
-      return SsdSearchParameter(toggleVolumes, type, interface);
+      return SsdSearchParameter(
+        toggleVolumes,
+        type,
+        interface,
+      );
     } else if (paramName == '規格') {
-      var toggleType = type;
+      final toggleType = type;
       toggleType[index].isSelect = !type[index].isSelect;
-      return SsdSearchParameter(volumes, toggleType, interface);
+      return SsdSearchParameter(
+        volumes,
+        toggleType,
+        interface,
+      );
     } else if (paramName == 'インターフェース') {
-      var toggleInterface = interface;
+      final toggleInterface = interface;
       toggleInterface[index].isSelect = !interface[index].isSelect;
-      return SsdSearchParameter(volumes, type, toggleInterface);
+      return SsdSearchParameter(
+        volumes,
+        type,
+        toggleInterface,
+      );
     } else {
       return this;
     }

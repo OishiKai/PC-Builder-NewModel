@@ -1,12 +1,15 @@
-import 'package:custom_pc/domain/search_parameter_parser/pc_case_search_parameter_parser.dart';
-import 'package:custom_pc/models/category_search_parameter.dart';
+import '../category_search_parameter.dart';
 
 class PcCaseSearchParameter extends CategorySearchParameter {
+  PcCaseSearchParameter(
+    this.supportMotherBoards,
+    this.supportGraphicsCards,
+    this.colors,
+  );
+
   final List<PartsSearchParameter> supportMotherBoards;
   final List<PartsSearchParameter> supportGraphicsCards;
   final List<PartsSearchParameter> colors;
-
-  PcCaseSearchParameter(this.supportMotherBoards, this.supportGraphicsCards, this.colors);
 
   @override
   List<Map<String, List<PartsSearchParameter>>> alignParameters() {
@@ -19,39 +22,40 @@ class PcCaseSearchParameter extends CategorySearchParameter {
 
   @override
   CategorySearchParameter clearSelectedParameter() {
-    final List<PartsSearchParameter> clearSupportMotherBoards = [];
-    for (var element in supportMotherBoards) {
+    final clearSupportMotherBoards = <PartsSearchParameter>[];
+    for (final element in supportMotherBoards) {
       element.isSelect = false;
       clearSupportMotherBoards.add(element);
     }
-    final List<PartsSearchParameter> clearSupportGraphicsCards = [];
-    for (var element in supportGraphicsCards) {
+    final clearSupportGraphicsCards = <PartsSearchParameter>[];
+    for (final element in supportGraphicsCards) {
       element.isSelect = false;
       clearSupportGraphicsCards.add(element);
     }
-    final List<PartsSearchParameter> clearColors = [];
-    for (var element in colors) {
+    final clearColors = <PartsSearchParameter>[];
+    for (final element in colors) {
       element.isSelect = false;
       clearColors.add(element);
     }
 
-    return PcCaseSearchParameter(clearSupportMotherBoards, clearSupportGraphicsCards, clearColors);
+    return PcCaseSearchParameter(
+        clearSupportMotherBoards, clearSupportGraphicsCards, clearColors);
   }
 
   @override
   List<String> selectedParameters() {
-    List<String> params = [];
-    for (var element in supportMotherBoards) {
+    final params = <String>[];
+    for (final element in supportMotherBoards) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in supportGraphicsCards) {
+    for (final element in supportGraphicsCards) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in colors) {
+    for (final element in colors) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
@@ -61,18 +65,18 @@ class PcCaseSearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameterNames() {
-    List<String> params = [];
-    for (var element in supportMotherBoards) {
+    final params = <String>[];
+    for (final element in supportMotherBoards) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in supportGraphicsCards) {
+    for (final element in supportGraphicsCards) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in colors) {
+    for (final element in colors) {
       if (element.isSelect) {
         params.add(element.name);
       }
@@ -81,25 +85,37 @@ class PcCaseSearchParameter extends CategorySearchParameter {
   }
 
   @override
-  String standardPage() {
-    return PcCaseSearchParameterParser.standardPage;
-  }
-
-  @override
   CategorySearchParameter toggleParameterSelect(String paramName, int index) {
     switch (paramName) {
       case '対応マザーボード':
-        var toggleSupportMotherBoards = supportMotherBoards;
-        toggleSupportMotherBoards[index].isSelect = !toggleSupportMotherBoards[index].isSelect;
-        return PcCaseSearchParameter(toggleSupportMotherBoards, supportGraphicsCards, colors);
+        final toggleSupportMotherBoards = supportMotherBoards;
+        toggleSupportMotherBoards[index].isSelect =
+            !toggleSupportMotherBoards[index].isSelect;
+        return PcCaseSearchParameter(
+          toggleSupportMotherBoards,
+          supportGraphicsCards,
+          colors,
+        );
+
       case '対応グラフィックボード':
-        var toggleSupportGraphicsCards = supportGraphicsCards;
-        toggleSupportGraphicsCards[index].isSelect = !toggleSupportGraphicsCards[index].isSelect;
-        return PcCaseSearchParameter(supportMotherBoards, toggleSupportGraphicsCards, colors);
+        final toggleSupportGraphicsCards = supportGraphicsCards;
+        toggleSupportGraphicsCards[index].isSelect =
+            !toggleSupportGraphicsCards[index].isSelect;
+        return PcCaseSearchParameter(
+          supportMotherBoards,
+          toggleSupportGraphicsCards,
+          colors,
+        );
+
       case 'カラー':
-        var toggleColors = colors;
+        final toggleColors = colors;
         toggleColors[index].isSelect = !toggleColors[index].isSelect;
-        return PcCaseSearchParameter(supportMotherBoards, supportGraphicsCards, toggleColors);
+        return PcCaseSearchParameter(
+          supportMotherBoards,
+          supportGraphicsCards,
+          toggleColors,
+        );
+
       default:
         return this;
     }

@@ -1,11 +1,9 @@
-import 'package:custom_pc/domain/search_parameter_parser/graphics_card_search_parameter_parser.dart';
-import 'package:custom_pc/models/category_search_parameter.dart';
+import '../category_search_parameter.dart';
 
 class GraphicsCardSearchParameter extends CategorySearchParameter {
+  GraphicsCardSearchParameter(this.nvidiaChips, this.amdChips);
   final List<PartsSearchParameter> nvidiaChips;
   final List<PartsSearchParameter> amdChips;
-
-  GraphicsCardSearchParameter(this.nvidiaChips, this.amdChips);
 
   @override
   List<Map<String, List<PartsSearchParameter>>> alignParameters() {
@@ -17,13 +15,13 @@ class GraphicsCardSearchParameter extends CategorySearchParameter {
 
   @override
   CategorySearchParameter clearSelectedParameter() {
-    final List<PartsSearchParameter> clearNvidiaChips = [];
-    for (var element in nvidiaChips) {
+    final clearNvidiaChips = <PartsSearchParameter>[];
+    for (final element in nvidiaChips) {
       element.isSelect = false;
       clearNvidiaChips.add(element);
     }
-    final List<PartsSearchParameter> clearAmdChips = [];
-    for (var element in amdChips) {
+    final clearAmdChips = <PartsSearchParameter>[];
+    for (final element in amdChips) {
       element.isSelect = false;
       clearAmdChips.add(element);
     }
@@ -33,13 +31,13 @@ class GraphicsCardSearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameters() {
-    List<String> params = [];
-    for (var element in nvidiaChips) {
+    final params = <String>[];
+    for (final element in nvidiaChips) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
     }
-    for (var element in amdChips) {
+    for (final element in amdChips) {
       if (element.isSelect) {
         params.add(element.parameter);
       }
@@ -49,13 +47,13 @@ class GraphicsCardSearchParameter extends CategorySearchParameter {
 
   @override
   List<String> selectedParameterNames() {
-    List<String> params = [];
-    for (var element in nvidiaChips) {
+    final params = <String>[];
+    for (final element in nvidiaChips) {
       if (element.isSelect) {
         params.add(element.name);
       }
     }
-    for (var element in amdChips) {
+    for (final element in amdChips) {
       if (element.isSelect) {
         params.add(element.name);
       }
@@ -64,18 +62,13 @@ class GraphicsCardSearchParameter extends CategorySearchParameter {
   }
 
   @override
-  String standardPage() {
-    return GraphicsCardSearchParameterParser.standardPage;
-  }
-
-  @override
   CategorySearchParameter toggleParameterSelect(String paramName, int index) {
     if (paramName == 'チップ(NVIDIA)') {
-      var toggleNviviaChips = nvidiaChips;
+      final toggleNviviaChips = nvidiaChips;
       toggleNviviaChips[index].isSelect = !nvidiaChips[index].isSelect;
       return GraphicsCardSearchParameter(toggleNviviaChips, amdChips);
     } else if (paramName == 'チップ(AMD)') {
-      var toggleAmdChips = amdChips;
+      final toggleAmdChips = amdChips;
       toggleAmdChips[index].isSelect = !amdChips[index].isSelect;
       return GraphicsCardSearchParameter(nvidiaChips, toggleAmdChips);
     } else {
