@@ -47,7 +47,11 @@ class MotherBoardSearchParameter extends CategorySearchParameter {
     }
 
     return MotherBoardSearchParameter(
-        clearIntelSockets, clearAmdSockets, clearFormFactors, clearMemoryType);
+      clearIntelSockets,
+      clearAmdSockets,
+      clearFormFactors,
+      clearMemoryType,
+    );
   }
 
   @override

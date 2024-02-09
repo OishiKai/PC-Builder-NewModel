@@ -27,7 +27,9 @@ class PowerUnitSearchParameter extends CategorySearchParameter {
     }
 
     return PowerUnitSearchParameter(
-        clearSupportTypes, clearPowerSupplyCapacities);
+      clearSupportTypes,
+      clearPowerSupplyCapacities,
+    );
   }
 
   @override

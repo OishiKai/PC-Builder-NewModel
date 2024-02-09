@@ -4,7 +4,11 @@ import '../category_search_parameter.dart';
 
 class CpuCoolerSearchParameter extends CategorySearchParameter {
   CpuCoolerSearchParameter(
-      this.makers, this.intelSockets, this.amdSockets, this.type);
+    this.makers,
+    this.intelSockets,
+    this.amdSockets,
+    this.type,
+  );
   final List<PartsSearchParameter> makers;
   final List<PartsSearchParameter> intelSockets;
   final List<PartsSearchParameter> amdSockets;

@@ -39,7 +39,10 @@ class PcCaseSearchParameter extends CategorySearchParameter {
     }
 
     return PcCaseSearchParameter(
-        clearSupportMotherBoards, clearSupportGraphicsCards, clearColors);
+      clearSupportMotherBoards,
+      clearSupportGraphicsCards,
+      clearColors,
+    );
   }
 
   @override
