@@ -13,7 +13,7 @@ class Price {
   int intPrice = 0;
   String stringPrice = '¥0';
 
-  /// 1000 -> "¥1,000"
+  /// 1000 to "¥1,000"
   String intToString() {
     final sValue = intPrice.toString();
     final buffer = StringBuffer()..write('¥');
@@ -26,7 +26,7 @@ class Price {
     return buffer.toString();
   }
 
-  /// "¥1,000" -> 1000
+  /// "¥1,000" to 1000
   int stringToInt() {
     final normalizedPrice =
         stringPrice.trim().replaceAll('¥', '').replaceAll(',', '');

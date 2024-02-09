@@ -71,6 +71,7 @@ extension CustomExtension on Custom {
     return copyWith(compatibilities: comps);
   }
 
+  /// 保存済みCustom一覧サムネイル用の画像
   String mainPartsImage() {
     if (parts == null) {
       return '';
