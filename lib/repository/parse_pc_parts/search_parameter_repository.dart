@@ -1,14 +1,14 @@
 import '../../model/category_search_parameter.dart';
 import '../../model/parts_category.dart';
-import '../search_parameter_parser/case_fan_search_parameter_repository.dart';
-import '../search_parameter_parser/cpu_cooler_search_parameter_repository.dart';
-import '../search_parameter_parser/cpu_search_search_parameter_repository.dart';
-import '../search_parameter_parser/graphics_card_search_parameter_repository.dart';
-import '../search_parameter_parser/memory_search_parameter_repository.dart';
-import '../search_parameter_parser/mother_board_search_parameter_repository.dart';
-import '../search_parameter_parser/pc_case_search_parameter_repository.dart';
-import '../search_parameter_parser/power_unit_search_parameter_repository.dart';
-import '../search_parameter_parser/ssd_search_parameter_repository.dart';
+import '../search_parameter_repository/case_fan_search_parameter_repository.dart';
+import '../search_parameter_repository/cpu_cooler_search_parameter_repository.dart';
+import '../search_parameter_repository/cpu_search_search_parameter_repository.dart';
+import '../search_parameter_repository/graphics_card_search_parameter_repository.dart';
+import '../search_parameter_repository/memory_search_parameter_repository.dart';
+import '../search_parameter_repository/mother_board_search_parameter_repository.dart';
+import '../search_parameter_repository/pc_case_search_parameter_repository.dart';
+import '../search_parameter_repository/power_unit_search_parameter_repository.dart';
+import '../search_parameter_repository/ssd_search_parameter_repository.dart';
 
 class SearchParameterRepository {
   SearchParameterRepository._();
