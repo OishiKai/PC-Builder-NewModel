@@ -4,25 +4,30 @@ import 'package:html/dom.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 
-Future<Document> fetchDocument(String targetUrl) async {
-  // HTTP GETリクエスト送信
-  final targetUri = Uri.parse(targetUrl);
-  final response = await http.get(targetUri);
+class DocumentRepository {
+  DocumentRepository(this.targetUrl);
+  final String targetUrl;
 
-  try {
-    // response を Shift_JIS にデコード
-    final documentBody =
-        await CharsetConverter.decode('Shift_JIS', response.bodyBytes);
+  Future<Document> fetchDocument() async {
+    // HTTP GETリクエスト送信
+    final targetUri = Uri.parse(targetUrl);
+    final response = await http.get(targetUri);
 
-    // パース
-    final document = parse(documentBody);
-    return document;
-  } on Exception catch (e) {
-    if (kDebugMode) {
-      print(e);
+    try {
+      // response を Shift_JIS にデコード
+      final documentBody =
+          await CharsetConverter.decode('Shift_JIS', response.bodyBytes);
+
+      // パース
+      final document = parse(documentBody);
+      return document;
+    } on Exception catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+
+      final document = parse(response.body);
+      return document;
     }
-
-    final document = parse(response.body);
-    return document;
   }
 }
