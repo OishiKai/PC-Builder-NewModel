@@ -4,7 +4,7 @@ import 'package:html/dom.dart';
 import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/case_fan_search_parameter.dart';
 import '../document_repository.dart';
-import '../parts_list_search_parameter.dart';
+import '../parse_pc_parts/parts_list_search_repository.dart';
 
 class CaseFanSearchParameterParser {
   CaseFanSearchParameterParser._();
@@ -40,9 +40,11 @@ class CaseFanSearchParameterParser {
     final makerListElementHidden = specListElement[1].querySelectorAll('li');
 
     makerList
-      ..addAll(PartsListSearchParameter(makerListElement).takeOutParameters())
+      ..addAll(PartsListSearchParameterRepository(makerListElement)
+          .takeOutParameters())
       ..addAll(
-        PartsListSearchParameter(makerListElementHidden).takeOutParameters(),
+        PartsListSearchParameterRepository(makerListElementHidden)
+            .takeOutParameters(),
       );
     return makerList;
   }
@@ -55,7 +57,7 @@ class CaseFanSearchParameterParser {
     final sizeListElement = specListElement[0].querySelectorAll('li');
 
     sizeList.addAll(
-      PartsListSearchParameter(sizeListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(sizeListElement).takeOutParameters(),
     );
     return sizeList;
   }
@@ -68,7 +70,8 @@ class CaseFanSearchParameterParser {
     final airVolumeListElement = specListElement[2].querySelectorAll('li');
 
     airVolumeList.addAll(
-      PartsListSearchParameter(airVolumeListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(airVolumeListElement)
+          .takeOutParameters(),
     );
     return airVolumeList;
   }

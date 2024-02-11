@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../model/custom.dart';
-import '../model/parts_category.dart';
-import '../model/pc_parts.dart';
-import '../summary_info_cell.dart';
+import '../../model/custom.dart';
+import '../../model/parts_category.dart';
+import '../../model/pc_parts.dart';
+import '../../summary_info_cell.dart';
 
-class CustomSummarizer {
-  CustomSummarizer._();
+class CustomSummaryRepository {
+  CustomSummaryRepository._();
   static List<SummaryInfoCell> getSummaryWidgets(
     Custom custom,
     Brightness bright,

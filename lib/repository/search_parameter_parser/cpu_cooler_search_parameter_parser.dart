@@ -4,7 +4,7 @@ import 'package:html/dom.dart';
 import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/cpu_cooler_search_parameter.dart';
 import '../document_repository.dart';
-import '../parts_list_search_parameter.dart';
+import '../parse_pc_parts/parts_list_search_repository.dart';
 
 class CpuCoolerSearchParameterParser {
   CpuCoolerSearchParameterParser._();
@@ -41,7 +41,7 @@ class CpuCoolerSearchParameterParser {
         .querySelectorAll(_parameterSelector)[2]
         .querySelectorAll('ul > li');
     makerList.addAll(
-      PartsListSearchParameter(makerListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(makerListElement).takeOutParameters(),
     );
     return makerList;
   }
@@ -53,7 +53,8 @@ class CpuCoolerSearchParameterParser {
         .querySelectorAll(_parameterSelector)[3]
         .querySelectorAll('ul > li');
     intelSocketList.addAll(
-      PartsListSearchParameter(intelSocketListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(intelSocketListElement)
+          .takeOutParameters(),
     );
     return intelSocketList;
   }
@@ -65,7 +66,8 @@ class CpuCoolerSearchParameterParser {
         .querySelectorAll(_parameterSelector)[4]
         .querySelectorAll('ul > li');
     amdSocketList.addAll(
-      PartsListSearchParameter(amdSocketListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(amdSocketListElement)
+          .takeOutParameters(),
     );
     return amdSocketList;
   }

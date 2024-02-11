@@ -1,10 +1,11 @@
-import '../model/category_search_parameter.dart';
-import '../model/custom.dart';
-import '../model/parts_category.dart';
-import '../model/recommend_parameter.dart';
+import '../../model/category_search_parameter.dart';
+import '../../model/custom.dart';
+import '../../model/parts_category.dart';
+import '../../model/recommend_parameter.dart';
 
-class ParameterRecommender {
-  ParameterRecommender(this.custom, this.selectingCategory, this.params) {
+class RecommendParameterRepository {
+  RecommendParameterRepository(
+      this.custom, this.selectingCategory, this.params) {
     recommendedParameters = recommend();
   }
   late final Custom custom;

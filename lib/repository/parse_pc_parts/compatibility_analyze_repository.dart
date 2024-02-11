@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
 
-import '../model/parts_category.dart';
-import '../model/parts_compatibility.dart';
-import '../model/pc_parts.dart';
+import '../../model/parts_category.dart';
+import '../../model/parts_compatibility.dart';
+import '../../model/pc_parts.dart';
 
-class CompatibilityAnalyzer {
-  CompatibilityAnalyzer(this.parts);
+class CompatibilityAnalyzeRepository {
+  CompatibilityAnalyzeRepository(this.parts);
   final List<PcParts> parts;
 
   String? _pickupSpec(Map<String, String?> specs, String key) {

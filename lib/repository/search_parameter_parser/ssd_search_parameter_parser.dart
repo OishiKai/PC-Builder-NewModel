@@ -3,7 +3,7 @@ import 'package:html/dom.dart';
 import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/ssd_search_parameter.dart';
 import '../document_repository.dart';
-import '../parts_list_search_parameter.dart';
+import '../parse_pc_parts/parts_list_search_repository.dart';
 
 class SsdSearchParameterParser {
   SsdSearchParameterParser._();
@@ -30,7 +30,7 @@ class SsdSearchParameterParser {
         .querySelectorAll('ul');
     final volumeListElement = specListElement[0].querySelectorAll('li');
     volumeList.addAll(
-      PartsListSearchParameter(volumeListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(volumeListElement).takeOutParameters(),
     );
     return volumeList;
   }
@@ -42,7 +42,7 @@ class SsdSearchParameterParser {
         .querySelectorAll('ul');
     final typeListElement = specListElement[1].querySelectorAll('li');
     typeList.addAll(
-      PartsListSearchParameter(typeListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(typeListElement).takeOutParameters(),
     );
     return typeList;
   }
@@ -54,7 +54,8 @@ class SsdSearchParameterParser {
         .querySelectorAll('ul');
     final interfaceListElement = specListElement[2].querySelectorAll('li');
     interfaceList.addAll(
-      PartsListSearchParameter(interfaceListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(interfaceListElement)
+          .takeOutParameters(),
     );
     return interfaceList;
   }

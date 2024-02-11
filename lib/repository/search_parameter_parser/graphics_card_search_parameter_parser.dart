@@ -3,7 +3,7 @@ import 'package:html/dom.dart';
 import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/graphics_card_search_parameter.dart';
 import '../document_repository.dart';
-import '../parts_list_search_parameter.dart';
+import '../parse_pc_parts/parts_list_search_repository.dart';
 
 class GraphicsCardSearchParameterParser {
   GraphicsCardSearchParameterParser._();
@@ -37,10 +37,12 @@ class GraphicsCardSearchParameterParser {
 
     nvidiaChipList
       ..addAll(
-        PartsListSearchParameter(headNvidiaChipList).takeOutParameters(),
+        PartsListSearchParameterRepository(headNvidiaChipList)
+            .takeOutParameters(),
       )
       ..addAll(
-        PartsListSearchParameter(tailNvidiaChipList).takeOutParameters(),
+        PartsListSearchParameterRepository(tailNvidiaChipList)
+            .takeOutParameters(),
       );
 
     return nvidiaChipList;
@@ -58,8 +60,10 @@ class GraphicsCardSearchParameterParser {
     final tailAmdChipList = amdChipListElement[3].querySelectorAll('li');
 
     amdChipList
-      ..addAll(PartsListSearchParameter(headAmdChipList).takeOutParameters())
-      ..addAll(PartsListSearchParameter(tailAmdChipList).takeOutParameters());
+      ..addAll(PartsListSearchParameterRepository(headAmdChipList)
+          .takeOutParameters())
+      ..addAll(PartsListSearchParameterRepository(tailAmdChipList)
+          .takeOutParameters());
     return amdChipList;
   }
 }

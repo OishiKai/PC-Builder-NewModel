@@ -1,9 +1,9 @@
 import 'package:html/dom.dart';
 
-import '../model/category_search_parameter.dart';
+import '../../model/category_search_parameter.dart';
 
-class PartsListSearchParameter {
-  PartsListSearchParameter(this.elements);
+class PartsListSearchParameterRepository {
+  PartsListSearchParameterRepository(this.elements);
   final List<Element> elements;
   /*
     HTMLDocumentから取り出したElementの配列から、

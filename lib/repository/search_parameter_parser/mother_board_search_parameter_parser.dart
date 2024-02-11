@@ -3,7 +3,7 @@ import 'package:html/dom.dart';
 import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/mother_board_search_parameter.dart';
 import '../document_repository.dart';
-import '../parts_list_search_parameter.dart';
+import '../parse_pc_parts/parts_list_search_repository.dart';
 
 class MotherBoardSearchParameterParser {
   MotherBoardSearchParameterParser._();
@@ -44,11 +44,11 @@ class MotherBoardSearchParameterParser {
     // 先頭
     intelSocketList
       ..addAll(
-        PartsListSearchParameter(firstIntelSocketListElement)
+        PartsListSearchParameterRepository(firstIntelSocketListElement)
             .takeOutParameters(),
       )
       ..addAll(
-        PartsListSearchParameter(afterIntelSocketListElement)
+        PartsListSearchParameterRepository(afterIntelSocketListElement)
             .takeOutParameters(),
       );
     return intelSocketList;
@@ -66,10 +66,12 @@ class MotherBoardSearchParameterParser {
     // CPUソケット(AMD)のリストは2つに分かれているので、それぞれのリストごとに処理する
     amdSocketList
       ..addAll(
-        PartsListSearchParameter(firstAmdSocketListElement).takeOutParameters(),
+        PartsListSearchParameterRepository(firstAmdSocketListElement)
+            .takeOutParameters(),
       )
       ..addAll(
-        PartsListSearchParameter(afterAmdSocketListElement).takeOutParameters(),
+        PartsListSearchParameterRepository(afterAmdSocketListElement)
+            .takeOutParameters(),
       );
     return amdSocketList;
   }
@@ -89,11 +91,11 @@ class MotherBoardSearchParameterParser {
     // 先頭
     formFactorList
       ..addAll(
-        PartsListSearchParameter(firstFormFactorListElement)
+        PartsListSearchParameterRepository(firstFormFactorListElement)
             .takeOutParameters(),
       )
       ..addAll(
-        PartsListSearchParameter(afterFormFactorListElement)
+        PartsListSearchParameterRepository(afterFormFactorListElement)
             .takeOutParameters(),
       );
     return formFactorList;
@@ -109,7 +111,8 @@ class MotherBoardSearchParameterParser {
         specListElement[11].querySelectorAll('li');
 
     memoryTypeList.addAll(
-      PartsListSearchParameter(firstMemoryTypeListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(firstMemoryTypeListElement)
+          .takeOutParameters(),
     );
     return memoryTypeList;
   }

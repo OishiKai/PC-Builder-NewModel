@@ -4,7 +4,7 @@ import 'package:html/dom.dart';
 import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/cpu_search_parameter.dart';
 import '../document_repository.dart';
-import '../parts_list_search_parameter.dart';
+import '../parse_pc_parts/parts_list_search_repository.dart';
 
 class CpuSearchParameterParser {
   CpuSearchParameterParser._();
@@ -38,7 +38,8 @@ class CpuSearchParameterParser {
         .querySelectorAll(_selector)[0]
         .querySelectorAll('ul.check.ultop');
     makerList.addAll(
-      PartsListSearchParameter(makerListElement[1].querySelectorAll('li'))
+      PartsListSearchParameterRepository(
+              makerListElement[1].querySelectorAll('li'))
           .takeOutParameters(),
     );
     return makerList;
@@ -56,14 +57,16 @@ class CpuSearchParameterParser {
     final firstProcessorElement =
         openProcessorElement[2].querySelectorAll('li');
     processorList.addAll(
-      PartsListSearchParameter(firstProcessorElement).takeOutParameters(),
+      PartsListSearchParameterRepository(firstProcessorElement)
+          .takeOutParameters(),
     );
 
     //それ以降
     final afterProcessorElement =
         openProcessorElement[3].querySelectorAll('li');
     processorList.addAll(
-      PartsListSearchParameter(afterProcessorElement).takeOutParameters(),
+      PartsListSearchParameterRepository(afterProcessorElement)
+          .takeOutParameters(),
     );
 
     return processorList;
@@ -91,7 +94,7 @@ class CpuSearchParameterParser {
     final seriesElement =
         openProcessorElement[seriesNodeIndex].querySelectorAll('li');
     seriesList.addAll(
-      PartsListSearchParameter(seriesElement).takeOutParameters(),
+      PartsListSearchParameterRepository(seriesElement).takeOutParameters(),
     );
     return seriesList;
   }
@@ -117,14 +120,16 @@ class CpuSearchParameterParser {
     final firstSocketElement =
         openSocketElement[seriesNodeIndex].querySelectorAll('li');
     socketList.addAll(
-      PartsListSearchParameter(firstSocketElement).takeOutParameters(),
+      PartsListSearchParameterRepository(firstSocketElement)
+          .takeOutParameters(),
     );
 
     //それ以降
     final afterSocketElement =
         openSocketElement[seriesNodeIndex + 1].querySelectorAll('li');
     socketList.addAll(
-      PartsListSearchParameter(afterSocketElement).takeOutParameters(),
+      PartsListSearchParameterRepository(afterSocketElement)
+          .takeOutParameters(),
     );
 
     return socketList;

@@ -1,17 +1,17 @@
-import '../model/category_search_parameter.dart';
-import '../model/parts_category.dart';
-import 'search_parameter_parser/case_fan_search_parameter_parser.dart';
-import 'search_parameter_parser/cpu_cooler_search_parameter_parser.dart';
-import 'search_parameter_parser/cpu_search_search_parameter_parser.dart';
-import 'search_parameter_parser/graphics_card_search_parameter_parser.dart';
-import 'search_parameter_parser/memory_search_parameter_parser.dart';
-import 'search_parameter_parser/mother_board_search_parameter_parser.dart';
-import 'search_parameter_parser/pc_case_search_parameter_parser.dart';
-import 'search_parameter_parser/power_unit_search_parameter_parser.dart';
-import 'search_parameter_parser/ssd_search_parameter_parser.dart';
+import '../../model/category_search_parameter.dart';
+import '../../model/parts_category.dart';
+import '../search_parameter_parser/case_fan_search_parameter_parser.dart';
+import '../search_parameter_parser/cpu_cooler_search_parameter_parser.dart';
+import '../search_parameter_parser/cpu_search_search_parameter_parser.dart';
+import '../search_parameter_parser/graphics_card_search_parameter_parser.dart';
+import '../search_parameter_parser/memory_search_parameter_parser.dart';
+import '../search_parameter_parser/mother_board_search_parameter_parser.dart';
+import '../search_parameter_parser/pc_case_search_parameter_parser.dart';
+import '../search_parameter_parser/power_unit_search_parameter_parser.dart';
+import '../search_parameter_parser/ssd_search_parameter_parser.dart';
 
-class SearchParameterFetcher {
-  SearchParameterFetcher._();
+class SearchParameterRepository {
+  SearchParameterRepository._();
   static Future<Map<PartsCategory, CategorySearchParameter>>
       getAllParams() async {
     final paramMap = <PartsCategory, CategorySearchParameter>{};

@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../model/parts_category.dart';
 import '../model/parts_compatibility.dart';
 import '../model/pc_parts.dart';
-import '../repository/compatibility_analyzer.dart';
+import '../repository/parse_pc_parts/compatibility_analyze_repository.dart';
 import '../repository/price.dart';
 
 part 'custom.freezed.dart';
@@ -46,7 +46,7 @@ extension CustomExtension on Custom {
     }
 
     final comps = <PartsCompatibility>[];
-    final analyzer = CompatibilityAnalyzer(parts!);
+    final analyzer = CompatibilityAnalyzeRepository(parts!);
 
     final compCpuAndMotherBoard = analyzer.analyzeCpuAndMotherBoard();
     if (compCpuAndMotherBoard != null) {

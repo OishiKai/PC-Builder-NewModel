@@ -3,7 +3,7 @@ import 'package:html/dom.dart';
 import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/pc_case_search_parameter.dart';
 import '../document_repository.dart';
-import '../parts_list_search_parameter.dart';
+import '../parse_pc_parts/parts_list_search_repository.dart';
 
 class PcCaseSearchParameterParser {
   PcCaseSearchParameterParser._();
@@ -35,7 +35,8 @@ class PcCaseSearchParameterParser {
         .querySelectorAll(_parameterSelector)[4]
         .querySelectorAll('ul > li');
     supportMotherBoardList.addAll(
-      PartsListSearchParameter(supportMBListElement).takeOutParameters(),
+      PartsListSearchParameterRepository(supportMBListElement)
+          .takeOutParameters(),
     );
     return supportMotherBoardList;
   }

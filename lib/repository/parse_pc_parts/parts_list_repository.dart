@@ -1,11 +1,11 @@
 import 'package:html/dom.dart';
 
-import '../model/parts_category.dart';
-import '../model/pc_parts.dart';
-import 'document_repository.dart';
+import '../../model/parts_category.dart';
+import '../../model/pc_parts.dart';
+import '../document_repository.dart';
 
-class PartsListParser {
-  PartsListParser(this.url, this.category);
+class PartsListRepository {
+  PartsListRepository(this.url, this.category);
   final String url;
   final PartsCategory category;
   static const _partsListSelector = '#compTblList > tbody > tr.tr-border';

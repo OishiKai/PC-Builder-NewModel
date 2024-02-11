@@ -2,11 +2,11 @@ import 'package:custom_pc_new_model/model/pc_parts.dart';
 import 'package:flutter/foundation.dart';
 import 'package:html/dom.dart';
 
-import '../model/parts_shop.dart';
-import 'document_repository.dart';
+import '../../model/parts_shop.dart';
+import '../document_repository.dart';
 
-class PartsDetailParser {
-  PartsDetailParser(this.pcParts);
+class PartsDetailRepository {
+  PartsDetailRepository(this.pcParts);
   final PcParts pcParts;
 
   static const _fullScaleImageSelector =
