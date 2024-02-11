@@ -1,3 +1,4 @@
+import 'package:custom_pc_new_model/config/build_context_ex.dart';
 import 'package:flutter/material.dart';
 
 import 'model/parts_category.dart';
@@ -23,20 +24,19 @@ class SummaryInfoCell extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(4),
         // 二列で表示するためpaddingを考慮して、画面*45%
-        width: MediaQuery.of(context).size.width * 0.45,
-        height: MediaQuery.of(context).size.width * 0.45,
+        width: context.width * 0.45,
+        height: context.height * 0.45,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceVariant,
+          color: context.colorScheme.surfaceVariant,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
               icon,
               size: 50,
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
+              color: context.colorScheme.onSurfaceVariant,
             ),
             const SizedBox(
               height: 4,
@@ -49,7 +49,7 @@ class SummaryInfoCell extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                color: context.colorScheme.onSurfaceVariant,
               ),
             ),
             const SizedBox(
@@ -58,7 +58,7 @@ class SummaryInfoCell extends StatelessWidget {
             Text(
               category.categoryShortName,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                color: context.colorScheme.onSurfaceVariant,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),

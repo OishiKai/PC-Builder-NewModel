@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../domain/compatibility_analyzer.dart';
-import '../domain/price.dart';
 import '../model/parts_category.dart';
 import '../model/parts_compatibility.dart';
 import '../model/pc_parts.dart';
+import '../repository/compatibility_analyzer.dart';
+import '../repository/price.dart';
 
 part 'custom.freezed.dart';
 
