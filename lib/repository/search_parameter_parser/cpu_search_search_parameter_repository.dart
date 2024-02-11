@@ -6,16 +6,16 @@ import '../../model/search_parameters/cpu_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class CpuSearchParameterParser {
-  CpuSearchParameterParser._();
+class CpuSearchParameterRepository {
+  CpuSearchParameterRepository._();
 
   static const String _selector = '#menu > div.searchspec';
   late Document _document;
   late CpuSearchParameter cpuSearchParameter;
 
-  static Future<CpuSearchParameterParser> create() async {
+  static Future<CpuSearchParameterRepository> create() async {
     final baseUrl = PartsCategory.cpu.basePartsListUrl();
-    final self = CpuSearchParameterParser._()
+    final self = CpuSearchParameterRepository._()
       .._document = await DocumentRepository(baseUrl).fetchDocument();
     final makers = self._parseMakerList();
     final processors = self._parseProcessorList();

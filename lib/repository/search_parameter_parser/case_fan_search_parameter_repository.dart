@@ -6,15 +6,15 @@ import '../../model/search_parameters/case_fan_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class CaseFanSearchParameterParser {
-  CaseFanSearchParameterParser._();
+class CaseFanSearchParameterRepository {
+  CaseFanSearchParameterRepository._();
 
   static const String _parameterSelector = '#menu > div.searchspec > div';
   late Document _document;
   late CaseFanSearchParameter caseFanSearchParameter;
 
-  static Future<CaseFanSearchParameterParser> create() async {
-    final self = CaseFanSearchParameterParser._();
+  static Future<CaseFanSearchParameterRepository> create() async {
+    final self = CaseFanSearchParameterRepository._();
     final basePageUrl = PartsCategory.caseFan.basePartsListUrl();
     self._document = await DocumentRepository(basePageUrl).fetchDocument();
 

@@ -5,16 +5,16 @@ import '../../model/search_parameters/graphics_card_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class GraphicsCardSearchParameterParser {
-  GraphicsCardSearchParameterParser._();
+class GraphicsCardSearchParameterRepository {
+  GraphicsCardSearchParameterRepository._();
   static const String _standardPage =
       'https://kakaku.com/pc/videocard/itemlist.aspx';
   static const String _parameterSelector = '#menu > div.searchspec > div';
   late Document _document;
   late GraphicsCardSearchParameter graphicsCardSearchParameter;
 
-  static Future<GraphicsCardSearchParameterParser> create() async {
-    final self = GraphicsCardSearchParameterParser._()
+  static Future<GraphicsCardSearchParameterRepository> create() async {
+    final self = GraphicsCardSearchParameterRepository._()
       .._document = await DocumentRepository(_standardPage).fetchDocument();
     final nvidiaChips = self._parseNvidiaChipList();
     final amdChips = self._parseAmdChips();

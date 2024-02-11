@@ -5,16 +5,16 @@ import '../../model/search_parameters/pc_case_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class PcCaseSearchParameterParser {
-  PcCaseSearchParameterParser._();
+class PcCaseSearchParameterRepository {
+  PcCaseSearchParameterRepository._();
   static const String _standardPage =
       'https://kakaku.com/pc/pc-case/itemlist.aspx';
   static const String _parameterSelector = '#menu > div.searchspec > div';
   late Document _document;
   late PcCaseSearchParameter pcCaseSearchParameter;
 
-  static Future<PcCaseSearchParameterParser> create() async {
-    final self = PcCaseSearchParameterParser._()
+  static Future<PcCaseSearchParameterRepository> create() async {
+    final self = PcCaseSearchParameterRepository._()
       .._document = await DocumentRepository(_standardPage).fetchDocument();
     final supportMotherBoards = self._parseSupportMotherBoard();
     final supportGraphicsCard = self._parseSupportGraphicsCard();

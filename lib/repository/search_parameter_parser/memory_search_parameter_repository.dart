@@ -5,16 +5,16 @@ import '../../model/search_parameters/memory_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class MemorySearchParameterParser {
-  MemorySearchParameterParser._();
+class MemorySearchParameterRepository {
+  MemorySearchParameterRepository._();
   static const String _standardPage =
       'https://kakaku.com/pc/pc-memory/itemlist.aspx';
   static const String _parameterSelector = '#menu > div.searchspec > div';
   late Document _document;
   late MemorySearchParameter memorySearchParameter;
 
-  static Future<MemorySearchParameterParser> create() async {
-    final self = MemorySearchParameterParser._()
+  static Future<MemorySearchParameterRepository> create() async {
+    final self = MemorySearchParameterRepository._()
       .._document = await DocumentRepository(_standardPage).fetchDocument();
     final volume = self._parseVolumeList();
     final interface = self._parseInterfaceList();

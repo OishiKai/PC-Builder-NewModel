@@ -4,8 +4,8 @@ import '../../model/category_search_parameter.dart';
 import '../../model/search_parameters/power_unit_search_parameter.dart';
 import '../document_repository.dart';
 
-class PowerUnitSearchParameterParser {
-  PowerUnitSearchParameterParser._();
+class PowerUnitSearchParameterRepository {
+  PowerUnitSearchParameterRepository._();
   static const String standardPage =
       'https://kakaku.com/pc/power-supply/itemlist.aspx';
   static const String _parameterSelector = '#menu > div.searchspec > div';
@@ -13,8 +13,8 @@ class PowerUnitSearchParameterParser {
   late Document _document;
   late PowerUnitSearchParameter powerUnitSearchParameter;
 
-  static Future<PowerUnitSearchParameterParser> create() async {
-    final self = PowerUnitSearchParameterParser._()
+  static Future<PowerUnitSearchParameterRepository> create() async {
+    final self = PowerUnitSearchParameterRepository._()
       .._document = await DocumentRepository(standardPage).fetchDocument();
     final supportTypes = self._parseSupportTypes()!;
     final powerSupplyCapacity = self._parsePowerSupplyCapacity()!;

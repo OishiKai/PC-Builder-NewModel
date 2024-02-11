@@ -1,14 +1,14 @@
 import '../../model/category_search_parameter.dart';
 import '../../model/parts_category.dart';
-import '../search_parameter_parser/case_fan_search_parameter_parser.dart';
-import '../search_parameter_parser/cpu_cooler_search_parameter_parser.dart';
-import '../search_parameter_parser/cpu_search_search_parameter_parser.dart';
-import '../search_parameter_parser/graphics_card_search_parameter_parser.dart';
-import '../search_parameter_parser/memory_search_parameter_parser.dart';
-import '../search_parameter_parser/mother_board_search_parameter_parser.dart';
-import '../search_parameter_parser/pc_case_search_parameter_parser.dart';
-import '../search_parameter_parser/power_unit_search_parameter_parser.dart';
-import '../search_parameter_parser/ssd_search_parameter_parser.dart';
+import '../search_parameter_parser/case_fan_search_parameter_repository.dart';
+import '../search_parameter_parser/cpu_cooler_search_parameter_repository.dart';
+import '../search_parameter_parser/cpu_search_search_parameter_repository.dart';
+import '../search_parameter_parser/graphics_card_search_parameter_repository.dart';
+import '../search_parameter_parser/memory_search_parameter_repository.dart';
+import '../search_parameter_parser/mother_board_search_parameter_repository.dart';
+import '../search_parameter_parser/pc_case_search_parameter_repository.dart';
+import '../search_parameter_parser/power_unit_search_parameter_repository.dart';
+import '../search_parameter_parser/ssd_search_parameter_repository.dart';
 
 class SearchParameterRepository {
   SearchParameterRepository._();
@@ -19,39 +19,39 @@ class SearchParameterRepository {
     for (final category in PartsCategory.values) {
       switch (category) {
         case PartsCategory.cpu:
-          final parser = await CpuSearchParameterParser.create();
+          final parser = await CpuSearchParameterRepository.create();
           paramMap[category] = parser.cpuSearchParameter;
 
         case PartsCategory.cpuCooler:
-          final parser = await CpuCoolerSearchParameterParser.create();
+          final parser = await CpuCoolerSearchParameterRepository.create();
           paramMap[category] = parser.cpuCoolerSearchParameter;
 
         case PartsCategory.memory:
-          final parser = await MemorySearchParameterParser.create();
+          final parser = await MemorySearchParameterRepository.create();
           paramMap[category] = parser.memorySearchParameter;
 
         case PartsCategory.motherboard:
-          final parser = await MotherBoardSearchParameterParser.create();
+          final parser = await MotherBoardSearchParameterRepository.create();
           paramMap[category] = parser.motherBoardSearchParameter;
 
         case PartsCategory.graphicsCard:
-          final parser = await GraphicsCardSearchParameterParser.create();
+          final parser = await GraphicsCardSearchParameterRepository.create();
           paramMap[category] = parser.graphicsCardSearchParameter;
 
         case PartsCategory.ssd:
-          final parser = await SsdSearchParameterParser.create();
+          final parser = await SsdSearchParameterRepository.create();
           paramMap[category] = parser.ssdSearchParameter;
 
         case PartsCategory.powerUnit:
-          final parser = await PowerUnitSearchParameterParser.create();
+          final parser = await PowerUnitSearchParameterRepository.create();
           paramMap[category] = parser.powerUnitSearchParameter;
 
         case PartsCategory.pcCase:
-          final parser = await PcCaseSearchParameterParser.create();
+          final parser = await PcCaseSearchParameterRepository.create();
           paramMap[category] = parser.pcCaseSearchParameter;
 
         case PartsCategory.caseFan:
-          final parser = await CaseFanSearchParameterParser.create();
+          final parser = await CaseFanSearchParameterRepository.create();
           paramMap[category] = parser.caseFanSearchParameter;
       }
     }

@@ -5,16 +5,16 @@ import '../../model/search_parameters/ssd_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class SsdSearchParameterParser {
-  SsdSearchParameterParser._();
+class SsdSearchParameterRepository {
+  SsdSearchParameterRepository._();
   static const String standardPage = 'https://kakaku.com/pc/ssd/itemlist.aspx';
   static const String _parameterSelector = '#menu > div.searchspec > div';
 
   late Document _document;
   late SsdSearchParameter ssdSearchParameter;
 
-  static Future<SsdSearchParameterParser> create() async {
-    final self = SsdSearchParameterParser._()
+  static Future<SsdSearchParameterRepository> create() async {
+    final self = SsdSearchParameterRepository._()
       .._document = await DocumentRepository(standardPage).fetchDocument();
     final volumes = self._parseVolume();
     final types = self._parseType();

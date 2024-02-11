@@ -6,15 +6,15 @@ import '../../model/search_parameters/cpu_cooler_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class CpuCoolerSearchParameterParser {
-  CpuCoolerSearchParameterParser._();
+class CpuCoolerSearchParameterRepository {
+  CpuCoolerSearchParameterRepository._();
 
   static const String _parameterSelector = '#menu > div.searchspec > div';
   late Document _document;
   late CpuCoolerSearchParameter cpuCoolerSearchParameter;
 
-  static Future<CpuCoolerSearchParameterParser> create() async {
-    final self = CpuCoolerSearchParameterParser._();
+  static Future<CpuCoolerSearchParameterRepository> create() async {
+    final self = CpuCoolerSearchParameterRepository._();
     final basePageUrl = PartsCategory.cpuCooler.basePartsListUrl();
     self._document = await DocumentRepository(basePageUrl).fetchDocument();
     final makers = self._parseMakerList();

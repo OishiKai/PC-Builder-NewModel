@@ -5,16 +5,16 @@ import '../../model/search_parameters/mother_board_search_parameter.dart';
 import '../document_repository.dart';
 import '../parse_pc_parts/parts_list_search_repository.dart';
 
-class MotherBoardSearchParameterParser {
-  MotherBoardSearchParameterParser._();
+class MotherBoardSearchParameterRepository {
+  MotherBoardSearchParameterRepository._();
   static const String _standardPage =
       'https://kakaku.com/pc/motherboard/itemlist.aspx';
   static const String _parameterSelector = '#menu > div.searchspec > div';
 
   late Document _document;
   late MotherBoardSearchParameter motherBoardSearchParameter;
-  static Future<MotherBoardSearchParameterParser> create() async {
-    final self = MotherBoardSearchParameterParser._()
+  static Future<MotherBoardSearchParameterRepository> create() async {
+    final self = MotherBoardSearchParameterRepository._()
       .._document = await DocumentRepository(_standardPage).fetchDocument();
     final intelSockets = self._parseIntelSockets();
     final amdSockets = self._parseAmdSockets();
