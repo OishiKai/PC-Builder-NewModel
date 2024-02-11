@@ -13,7 +13,7 @@ class CpuSearchParameterParser {
   late Document _document;
   late CpuSearchParameter cpuSearchParameter;
 
-  static Future<void> create() async {
+  static Future<CpuSearchParameterParser> create() async {
     final baseUrl = PartsCategory.cpu.basePartsListUrl();
     final self = CpuSearchParameterParser._()
       .._document = await DocumentRepository(baseUrl).fetchDocument();
@@ -28,6 +28,7 @@ class CpuSearchParameterParser {
       series,
       sockets,
     );
+    return self;
   }
 
   List<PartsSearchParameter> _parseMakerList() {
