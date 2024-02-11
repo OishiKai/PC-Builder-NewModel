@@ -5,7 +5,10 @@ import '../../model/recommend_parameter.dart';
 
 class RecommendParameterRepository {
   RecommendParameterRepository(
-      this.custom, this.selectingCategory, this.params) {
+    this.custom,
+    this.selectingCategory,
+    this.params,
+  ) {
     recommendedParameters = recommend();
   }
   late final Custom custom;

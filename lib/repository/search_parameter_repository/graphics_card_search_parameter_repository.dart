@@ -60,10 +60,12 @@ class GraphicsCardSearchParameterRepository {
     final tailAmdChipList = amdChipListElement[3].querySelectorAll('li');
 
     amdChipList
-      ..addAll(PartsListSearchParameterRepository(headAmdChipList)
-          .takeOutParameters())
-      ..addAll(PartsListSearchParameterRepository(tailAmdChipList)
-          .takeOutParameters());
+      ..addAll(
+        PartsListSearchParameterRepository(headAmdChipList).takeOutParameters(),
+      )
+      ..addAll(
+        PartsListSearchParameterRepository(tailAmdChipList).takeOutParameters(),
+      );
     return amdChipList;
   }
 }

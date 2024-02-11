@@ -40,8 +40,10 @@ class CaseFanSearchParameterRepository {
     final makerListElementHidden = specListElement[1].querySelectorAll('li');
 
     makerList
-      ..addAll(PartsListSearchParameterRepository(makerListElement)
-          .takeOutParameters())
+      ..addAll(
+        PartsListSearchParameterRepository(makerListElement)
+            .takeOutParameters(),
+      )
       ..addAll(
         PartsListSearchParameterRepository(makerListElementHidden)
             .takeOutParameters(),

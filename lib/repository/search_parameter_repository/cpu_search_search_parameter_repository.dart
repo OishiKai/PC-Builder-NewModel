@@ -39,8 +39,8 @@ class CpuSearchParameterRepository {
         .querySelectorAll('ul.check.ultop');
     makerList.addAll(
       PartsListSearchParameterRepository(
-              makerListElement[1].querySelectorAll('li'))
-          .takeOutParameters(),
+        makerListElement[1].querySelectorAll('li'),
+      ).takeOutParameters(),
     );
     return makerList;
   }
