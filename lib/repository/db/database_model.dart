@@ -1,10 +1,10 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseModel210 {
-  DatabaseModel210._();
+class DatabaseModel {
+  DatabaseModel._();
   static final Future<Database> database = openDatabase(
-    join(getDatabasesPath().toString(), 'custom_pc_database.db'),
+    join(getDatabasesPath().toString(), 'custom_pc_database_v2.db'),
     // マイグレーション
     onCreate: (db, version) {
       db

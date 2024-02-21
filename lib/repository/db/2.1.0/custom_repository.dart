@@ -22,7 +22,7 @@ class CustomRepository {
       partsIdMap[parts.category] = partsId;
     });
 
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
 
     final map = {
       'id': customId,
@@ -50,7 +50,7 @@ class CustomRepository {
 
   // Custom取得
   static Future<Map<String, Custom>> getAllCustoms() async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final stored = await db.query('custom');
     if (stored.isEmpty) {
       return {};
@@ -115,7 +115,7 @@ class CustomRepository {
   // Custom削除
   static Future<void> deleteCustom(String id) async {
     await deleteIncludeParts(id);
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     await db.delete(
       'custom',
       where: 'id = ?',
@@ -125,7 +125,7 @@ class CustomRepository {
 
   // Custom更新
   static Future<void> updateCustom(String customId, Custom custom) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     await deleteIncludeParts(customId);
 
     final partsIdMap = <PartsCategory, Future<int>>{};
@@ -164,7 +164,7 @@ class CustomRepository {
   static Future<Map<PartsCategory, int?>> deleteIncludeParts(
     String customId,
   ) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final stored = await db.query(
       'custom',
       where: 'id = ?',
@@ -198,7 +198,7 @@ class CustomRepository {
 
   // v2 Custom取得
   static Future<List<Custom>> getAllCustomsV2() async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final stored = await db.query('custom');
     if (stored.isEmpty) {
       return [];

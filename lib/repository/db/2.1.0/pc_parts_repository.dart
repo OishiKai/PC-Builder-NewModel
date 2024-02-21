@@ -21,7 +21,7 @@ class PcPartsRepository {
       'image': pcParts.image,
       'detail_url': pcParts.detailUrl,
     };
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final partsId = await db.insert(
       'pc_parts',
       map,
@@ -40,7 +40,7 @@ class PcPartsRepository {
     if (shops == null) {
       return;
     }
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     for (final shop in shops) {
       final map = {
         'parts_id': id,
@@ -66,7 +66,7 @@ class PcPartsRepository {
     if (specs == null) {
       return;
     }
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     specs.forEach((key, value) async {
       final map = {
         'parts_id': id,
@@ -89,7 +89,7 @@ class PcPartsRepository {
     if (images == null) {
       return;
     }
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     for (final image in images) {
       final map = {
         'parts_id': id,
@@ -105,7 +105,7 @@ class PcPartsRepository {
 
   // PcParts取得
   static Future<List<PcParts>> getAllPcParts() async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final List<Map<String, dynamic>> maps = await db.query('pc_parts');
     final pcParts = <PcParts>[];
     for (final map in maps) {
@@ -140,7 +140,7 @@ class PcPartsRepository {
     if (id == null) {
       return null;
     }
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final List<Map<String, dynamic>> maps = await db.query(
       'pc_parts',
       where: 'id = ?',
@@ -173,7 +173,7 @@ class PcPartsRepository {
 
   // 削除
   static Future<void> deletePcParts(int id) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     await _deletePartsShops(id);
     await _deletePartsSpecs(id);
     await _deleteFullScaleImages(id);
@@ -186,7 +186,7 @@ class PcPartsRepository {
 
   // 店情報取得
   static Future<List<PartsShop>> _selectPartsShopsById(int id) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final List<Map<String, dynamic>> maps = await db.query(
       'parts_shops',
       where: 'parts_id = ?',
@@ -209,7 +209,7 @@ class PcPartsRepository {
 
   //　店情報削除
   static Future<void> _deletePartsShops(int id) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     await db.delete(
       'parts_shops',
       where: 'parts_id = ?',
@@ -219,7 +219,7 @@ class PcPartsRepository {
 
   // スペック情報取得
   static Future<Map<String, String?>> _partsSpecs(int id) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final List<Map<String, dynamic>> maps = await db.query(
       'parts_specs',
       where: 'parts_id = ?',
@@ -234,7 +234,7 @@ class PcPartsRepository {
 
   // スペック情報削除
   static Future<void> _deletePartsSpecs(int id) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     await db.delete(
       'parts_specs',
       where: 'parts_id = ?',
@@ -244,7 +244,7 @@ class PcPartsRepository {
 
   // 画像情報取得
   static Future<List<String>> _selectFullScaleImagesById(int id) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     final List<Map<String, dynamic>> maps = await db.query(
       'full_scale_images',
       where: 'parts_id = ?',
@@ -259,7 +259,7 @@ class PcPartsRepository {
 
   // 画像情報削除
   static Future<void> _deleteFullScaleImages(int id) async {
-    final db = await DatabaseModel.database;
+    final db = await DatabaseModel210.database;
     await db.delete(
       'full_scale_images',
       where: 'parts_id = ?',
