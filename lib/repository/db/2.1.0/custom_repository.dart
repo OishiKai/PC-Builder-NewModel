@@ -7,8 +7,8 @@ import '../../../model/pc_parts.dart';
 import 'databese_model.dart';
 import 'pc_parts_repository.dart';
 
-class CustomRepository {
-  CustomRepository._();
+class CustomRepository210 {
+  CustomRepository210._();
   //Custom保存
   static Future<int> insertCustom(Custom custom) async {
     // custom_idを生成
@@ -18,7 +18,7 @@ class CustomRepository {
 
     custom.parts?.forEach((parts) {
       // 各パーツを保存して、idを保持
-      final partsId = PcPartsRepository.insertPcParts(parts, customId);
+      final partsId = PcPartsRepository210.insertPcParts(parts, customId);
       partsIdMap[parts.category] = partsId;
     });
 
@@ -63,29 +63,29 @@ class CustomRepository {
       final price = custom['price']! as String;
       final date = custom['date']! as String;
 
-      final cpu =
-          await PcPartsRepository.selectPcPartsById(custom['cpu_id'] as int?);
-      final cpuCooler = await PcPartsRepository.selectPcPartsById(
+      final cpu = await PcPartsRepository210.selectPcPartsById(
+          custom['cpu_id'] as int?);
+      final cpuCooler = await PcPartsRepository210.selectPcPartsById(
         custom['cpu_cooler_id'] as int?,
       );
-      final memory = await PcPartsRepository.selectPcPartsById(
+      final memory = await PcPartsRepository210.selectPcPartsById(
         custom['memory_id'] as int?,
       );
-      final motherBoard = await PcPartsRepository.selectPcPartsById(
+      final motherBoard = await PcPartsRepository210.selectPcPartsById(
         custom['mother_board_id'] as int?,
       );
-      final graphicsCard = await PcPartsRepository.selectPcPartsById(
+      final graphicsCard = await PcPartsRepository210.selectPcPartsById(
         custom['graphics_card_id'] as int?,
       );
-      final ssd =
-          await PcPartsRepository.selectPcPartsById(custom['ssd_id'] as int?);
-      final pcCase = await PcPartsRepository.selectPcPartsById(
+      final ssd = await PcPartsRepository210.selectPcPartsById(
+          custom['ssd_id'] as int?);
+      final pcCase = await PcPartsRepository210.selectPcPartsById(
         custom['pc_case_id'] as int?,
       );
-      final powerUnit = await PcPartsRepository.selectPcPartsById(
+      final powerUnit = await PcPartsRepository210.selectPcPartsById(
         custom['power_unit_id'] as int?,
       );
-      final caseFan = await PcPartsRepository.selectPcPartsById(
+      final caseFan = await PcPartsRepository210.selectPcPartsById(
         custom['case_fan_id'] as int?,
       );
 
@@ -131,7 +131,7 @@ class CustomRepository {
     final partsIdMap = <PartsCategory, Future<int>>{};
     custom.parts?.forEach((parts) {
       // 各パーツを保存して、idを保持
-      final partsId = PcPartsRepository.insertPcParts(parts, customId);
+      final partsId = PcPartsRepository210.insertPcParts(parts, customId);
       partsIdMap[parts.category] = partsId;
     });
 
@@ -190,7 +190,7 @@ class CustomRepository {
     // idがnullでない場合はパーツを削除
     partsIdMap.forEach((category, partsId) async {
       if (partsId != null) {
-        await PcPartsRepository.deletePcParts(partsId);
+        await PcPartsRepository210.deletePcParts(partsId);
       }
     });
     return partsIdMap;
@@ -211,29 +211,29 @@ class CustomRepository {
       final price = custom['price']! as String;
       final date = custom['date']! as String;
 
-      final cpu =
-          await PcPartsRepository.selectPcPartsById(custom['cpu_id'] as int?);
-      final cpuCooler = await PcPartsRepository.selectPcPartsById(
+      final cpu = await PcPartsRepository210.selectPcPartsById(
+          custom['cpu_id'] as int?);
+      final cpuCooler = await PcPartsRepository210.selectPcPartsById(
         custom['cpu_cooler_id'] as int?,
       );
-      final memory = await PcPartsRepository.selectPcPartsById(
+      final memory = await PcPartsRepository210.selectPcPartsById(
         custom['memory_id'] as int?,
       );
-      final motherBoard = await PcPartsRepository.selectPcPartsById(
+      final motherBoard = await PcPartsRepository210.selectPcPartsById(
         custom['mother_board_id'] as int?,
       );
-      final graphicsCard = await PcPartsRepository.selectPcPartsById(
+      final graphicsCard = await PcPartsRepository210.selectPcPartsById(
         custom['graphics_card_id'] as int?,
       );
-      final ssd =
-          await PcPartsRepository.selectPcPartsById(custom['ssd_id'] as int?);
-      final pcCase = await PcPartsRepository.selectPcPartsById(
+      final ssd = await PcPartsRepository210.selectPcPartsById(
+          custom['ssd_id'] as int?);
+      final pcCase = await PcPartsRepository210.selectPcPartsById(
         custom['pc_case_id'] as int?,
       );
-      final powerUnit = await PcPartsRepository.selectPcPartsById(
+      final powerUnit = await PcPartsRepository210.selectPcPartsById(
         custom['power_unit_id'] as int?,
       );
-      final caseFan = await PcPartsRepository.selectPcPartsById(
+      final caseFan = await PcPartsRepository210.selectPcPartsById(
         custom['case_fan_id'] as int?,
       );
 

@@ -5,8 +5,8 @@ import 'package:sqflite/sqflite.dart';
 import '../../../model/parts_shop.dart';
 import '../../../model/pc_parts.dart';
 
-class PcPartsRepository {
-  PcPartsRepository._();
+class PcPartsRepository210 {
+  PcPartsRepository210._();
   // PcParts保存
   static Future<int> insertPcParts(PcParts pcParts, String customId) async {
     final map = {
