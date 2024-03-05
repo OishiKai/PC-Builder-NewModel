@@ -26,6 +26,10 @@ class PcPartsRepository {
   /// PcParts保存
   /// @param pcParts 保存するPcParts
   static Future<void> insertPcParts(PcParts pcParts) async {
+    if (await _isExistPcPartsById(pcParts.id)) {
+      return;
+    }
+
     final map = {
       _id: pcParts.id,
       _category: pcParts.category.categoryParameter,
@@ -104,5 +108,18 @@ class PcPartsRepository {
       fullScaleImages: images,
     );
     return parts;
+  }
+
+  /// PcPartsがすでに保存済みか
+  /// @param id 取得するPcPartsのID
+  /// @return 存在するか
+  static Future<bool> _isExistPcPartsById(String id) async {
+    final db = await DatabaseModel.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      _tableName,
+      where: '$_id = ?',
+      whereArgs: [id],
+    );
+    return maps.isNotEmpty;
   }
 }
