@@ -12,6 +12,7 @@ class PcPartsRepository {
   PcPartsRepository._();
   static final String _tableName = PcPartsTableField.tableName.value;
   static final String _id = PcPartsTableField.id.value;
+  static final String _category = PcPartsTableField.category.value;
   static final String _maker = PcPartsTableField.maker.value;
   static final String _isNew = PcPartsTableField.isNew.value;
   static final String _title = PcPartsTableField.title.value;
@@ -27,6 +28,7 @@ class PcPartsRepository {
   static Future<void> insertPcParts(PcParts pcParts) async {
     final map = {
       _id: pcParts.id,
+      _category: pcParts.category.categoryParameter,
       _maker: pcParts.maker,
       _isNew: pcParts.isNew ? 1 : 0,
       _title: pcParts.title,
@@ -83,22 +85,24 @@ class PcPartsRepository {
       partsMap[FullScaleImagesTableField.partsId] as String,
     );
 
-    final i = PcParts(
-      maker: partsMap['maker'] as String,
-      isNew: partsMap['is_new'] == 1,
-      title: partsMap['title'] as String,
-      star: partsMap['star'] as int?,
-      evaluation: partsMap['evaluation'] as String?,
-      price: partsMap['price'] as String,
-      ranked: partsMap['ranked'] as String,
-      image: partsMap['image'] as String,
-      detailUrl: partsMap['detail_url'] as String,
+    final parts = PcParts(
+      id: partsMap[_id] as String,
+      category: PartsCategory.fromCategoryParameter(
+        partsMap[_category] as String,
+      ),
+      maker: partsMap[_maker] as String,
+      isNew: partsMap[_isNew] == 1,
+      title: partsMap[_title] as String,
+      star: partsMap[_star] as int?,
+      evaluation: partsMap[_evaluation] as String?,
+      price: partsMap[_price] as String,
+      ranked: partsMap[_ranked] as String,
+      image: partsMap[_image] as String,
+      detailUrl: partsMap[_detailUrl] as String,
       shops: shops,
       specs: specs,
       fullScaleImages: images,
-      category: PartsCategory.cpu,
-      id: '',
     );
-    return i;
+    return parts;
   }
 }

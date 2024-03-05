@@ -30,6 +30,7 @@ class DatabaseModel {
         ..execute(
           '''CREATE TABLE ${PcPartsTableField.tableName.value} (
         ${PcPartsTableField.id.value} TEXT,
+        ${PcPartsTableField.category.value} TEXT NOT NULL,
         ${PcPartsTableField.maker.value} TEXT NOT NULL,
         ${PcPartsTableField.isNew.value} INTEGER NOT NULL,
         ${PcPartsTableField.title.value} TEXT NOT NULL,

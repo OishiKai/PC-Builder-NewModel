@@ -21,6 +21,7 @@ enum CustomPartsRelationTableField {
 enum PcPartsTableField {
   tableName('pc_parts'),
   id('id'),
+  category('category'),
   maker('maker'),
   isNew('is_new'),
   title('title'),
