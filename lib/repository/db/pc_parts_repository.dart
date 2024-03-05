@@ -8,6 +8,9 @@ import 'database_constants.dart';
 class PcPartsRepository {
   PcPartsRepository._();
 
+  /// PcParts保存
+  /// @param pcParts 保存するPcParts
+  /// @return 保存したPcPartsのID
   static Future<int> insertPcParts(PcParts pcParts) async {
     final map = {
       PcPartsTableField.id.value: pcParts.id,
@@ -34,7 +37,9 @@ class PcPartsRepository {
     return partsId;
   }
 
-  // 店情報保存
+  /// 店情報保存
+  /// @param shops 保存する店情報
+  /// @param id 保存するPcPartsのID
   static Future<void> _insertPartsShops(List<PartsShop>? shops, int id) async {
     if (shops == null) {
       return;
@@ -57,7 +62,9 @@ class PcPartsRepository {
     }
   }
 
-  // スペック情報保存
+  /// スペック情報保存
+  /// @param specs 保存するスペック情報
+  /// @param id 保存するPcPartsのID
   static Future<void> _insertPartsSpecs(
       Map<String, String?>? specs, int id,) async {
     if (specs == null) {
@@ -78,7 +85,9 @@ class PcPartsRepository {
     });
   }
 
-  // 画像情報保存
+  /// 画像情報保存
+  /// @param images 保存する画像情報
+  /// @param id 保存するPcPartsのID
   static Future<void> _insertFullScaleImages(
       List<String>? images, int id,) async {
     if (images == null) {
