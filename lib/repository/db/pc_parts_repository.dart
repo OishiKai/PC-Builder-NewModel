@@ -3,27 +3,27 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../model/parts_shop.dart';
 import '../../model/pc_parts.dart';
+import 'database_constants.dart';
 
 class PcPartsRepository {
   PcPartsRepository._();
 
-  static Future<int> insertPcParts(PcParts pcParts, String customId) async {
+  static Future<int> insertPcParts(PcParts pcParts) async {
     final map = {
-      'custom_id': customId,
-      'maker': pcParts.maker,
-      'is_new': pcParts.isNew ? 1 : 0,
-      'title': pcParts.title,
-      'star': pcParts.star,
-      'evaluation': pcParts.evaluation,
-      'price': pcParts.price,
-      'ranked': pcParts.ranked,
-      'image': pcParts.image,
-      'detail_url': pcParts.detailUrl,
-      'category': pcParts.category.categoryName,
+      PcPartsTableField.id.value: pcParts.id,
+      PcPartsTableField.maker.value: pcParts.maker,
+      PcPartsTableField.isNew.value: pcParts.isNew ? 1 : 0,
+      PcPartsTableField.title.value: pcParts.title,
+      PcPartsTableField.star.value: pcParts.star,
+      PcPartsTableField.evaluation.value: pcParts.evaluation,
+      PcPartsTableField.price.value: pcParts.price,
+      PcPartsTableField.ranked.value: pcParts.ranked,
+      PcPartsTableField.image.value: pcParts.image,
+      PcPartsTableField.detailUrl.value: pcParts.detailUrl,
     };
     final db = await DatabaseModel.database;
     final partsId = await db.insert(
-      'pc_parts',
+      PcPartsTableField.tableName.value,
       map,
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -42,15 +42,15 @@ class PcPartsRepository {
     final db = await DatabaseModel.database;
     for (final shop in shops) {
       final map = {
-        'parts_id': id,
-        'rank': shop.rank,
-        'price': shop.price,
-        'best_price_diff': shop.bestPriceDiff,
-        'name': shop.shopName,
-        'page_url': shop.shopPageUrl,
+        PartsShopsTableField.partsId.value: id,
+        PartsShopsTableField.rank.value: shop.rank,
+        PartsShopsTableField.price.value: shop.price,
+        PartsShopsTableField.bestPriceDiff.value: shop.bestPriceDiff,
+        PartsShopsTableField.name.value: shop.shopName,
+        PartsShopsTableField.pageUrl.value: shop.shopPageUrl,
       };
       await db.insert(
-        'parts_shops',
+        PartsShopsTableField.tableName.value,
         map,
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
@@ -59,21 +59,19 @@ class PcPartsRepository {
 
   // スペック情報保存
   static Future<void> _insertPartsSpecs(
-      Map<String, String?>? specs,
-      int id,
-      ) async {
+      Map<String, String?>? specs, int id,) async {
     if (specs == null) {
       return;
     }
     final db = await DatabaseModel.database;
     specs.forEach((key, value) async {
       final map = {
-        'parts_id': id,
-        'spec_name': key,
-        'spec_value': value,
+        PartsSpecsTableField.partsId.value: id,
+        PartsSpecsTableField.specName.value: key,
+        PartsSpecsTableField.specValue.value: value,
       };
       await db.insert(
-        'parts_specs',
+        PartsSpecsTableField.tableName.value,
         map,
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
@@ -82,20 +80,18 @@ class PcPartsRepository {
 
   // 画像情報保存
   static Future<void> _insertFullScaleImages(
-      List<String>? images,
-      int id,
-      ) async {
+      List<String>? images, int id,) async {
     if (images == null) {
       return;
     }
     final db = await DatabaseModel.database;
     for (final image in images) {
       final map = {
-        'parts_id': id,
-        'image_url': image,
+        FullScaleImagesTableField.partsId.value: id,
+        FullScaleImagesTableField.imageUrl.value: image,
       };
       await db.insert(
-        'full_scale_images',
+        FullScaleImagesTableField.tableName.value,
         map,
         conflictAlgorithm: ConflictAlgorithm.replace,
       );

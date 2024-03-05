@@ -13,66 +13,66 @@ class DatabaseModel {
         ..execute('PRAGMA foreign_keys = ON')
         // カスタムテーブル
         ..execute(
-          '''CREATE TABLE ${CustomTableField.tableName} (
-        ${CustomTableField.id} TEXT PRIMARY KEY,
-        ${CustomTableField.name} TEXT NOT NULL,
-        ${CustomTableField.price} TEXT NOT NULL,
-        ${CustomTableField.date} TEXT NOT NULL
+          '''CREATE TABLE ${CustomTableField.tableName.value} (
+        ${CustomTableField.id.value} TEXT PRIMARY KEY,
+        ${CustomTableField.name.value} TEXT NOT NULL,
+        ${CustomTableField.price.value} TEXT NOT NULL,
+        ${CustomTableField.date.value} TEXT NOT NULL
         )''',
         )
         // カスタムとパーツの関係テーブル
         ..execute(
-          '''CREATE TABLE ${CustomPartsRelationTableField.tableName} (
-        ${CustomPartsRelationTableField.customId} TEXT PRIMARY KEY,
-        ${CustomPartsRelationTableField.partsId} TEXT PRIMARY KEY)''',
+          '''CREATE TABLE ${CustomPartsRelationTableField.tableName.value} (
+        ${CustomPartsRelationTableField.customId.value} TEXT PRIMARY KEY,
+        ${CustomPartsRelationTableField.partsId.value} TEXT PRIMARY KEY)''',
         )
         // パーツテーブル
         ..execute(
-          '''CREATE TABLE ${PcPartsTableField.tableName} (
-        ${PcPartsTableField.id} TEXT,
-        ${PcPartsTableField.maker} TEXT NOT NULL,
-        ${PcPartsTableField.isNew} INTEGER NOT NULL,
-        ${PcPartsTableField.title} TEXT NOT NULL,
-        ${PcPartsTableField.star} INTEGER,
-        ${PcPartsTableField.evaluation} TEXT,
-        ${PcPartsTableField.price} TEXT NOT NULL,
-        ${PcPartsTableField.ranked} TEXT NOT NULL,
-        ${PcPartsTableField.image} TEXT NOT NULL,
-        ${PcPartsTableField.detailUrl} TEXT NOT NULL,
-        PRIMARY KEY (${PcPartsTableField.id}),
-        FOREIGN KEY (${PcPartsTableField.id}) REFERENCES ${CustomPartsRelationTableField.tableName}(${CustomPartsRelationTableField.partsId}) ON DELETE CASCADE)''',
+          '''CREATE TABLE ${PcPartsTableField.tableName.value} (
+        ${PcPartsTableField.id.value} TEXT,
+        ${PcPartsTableField.maker.value} TEXT NOT NULL,
+        ${PcPartsTableField.isNew.value} INTEGER NOT NULL,
+        ${PcPartsTableField.title.value} TEXT NOT NULL,
+        ${PcPartsTableField.star.value} INTEGER,
+        ${PcPartsTableField.evaluation.value} TEXT,
+        ${PcPartsTableField.price.value} TEXT NOT NULL,
+        ${PcPartsTableField.ranked.value} TEXT NOT NULL,
+        ${PcPartsTableField.image.value} TEXT NOT NULL,
+        ${PcPartsTableField.detailUrl.value} TEXT NOT NULL,
+        PRIMARY KEY (${PcPartsTableField.id.value}),
+        FOREIGN KEY (${PcPartsTableField.id.value}) REFERENCES ${CustomPartsRelationTableField.tableName.value}(${CustomPartsRelationTableField.partsId.value}) ON DELETE CASCADE)''',
         )
         // 店情報テーブル
         ..execute(
-          '''CREATE TABLE ${PartsShopsTableField.tableName} (
-        ${PartsShopsTableField.id} INTEGER,
-        ${PartsShopsTableField.partsId} INTEGER,
-        ${PartsShopsTableField.rank} TEXT NOT NULL,
-        ${PartsShopsTableField.price} INTEGER NOT NULL,
-        ${PartsShopsTableField.bestPriceDiff} TEXT NOT NULL,
-        ${PartsShopsTableField.name} TEXT,
-        ${PartsShopsTableField.pageUrl} TEXT NOT NULL,
-        PRIMARY KEY (${PartsShopsTableField.id}, ${PartsShopsTableField.partsId}),
-        FOREIGN KEY (${PartsShopsTableField.partsId}) REFERENCES ${PcPartsTableField.tableName}(${PcPartsTableField.id}) ON DELETE CASCADE)''',
+          '''CREATE TABLE ${PartsShopsTableField.tableName.value} (
+        ${PartsShopsTableField.id.value} INTEGER,
+        ${PartsShopsTableField.partsId.value} INTEGER,
+        ${PartsShopsTableField.rank.value} TEXT NOT NULL,
+        ${PartsShopsTableField.price.value} INTEGER NOT NULL,
+        ${PartsShopsTableField.bestPriceDiff.value} TEXT NOT NULL,
+        ${PartsShopsTableField.name.value} TEXT,
+        ${PartsShopsTableField.pageUrl.value} TEXT NOT NULL,
+        PRIMARY KEY (${PartsShopsTableField.id.value}, ${PartsShopsTableField.partsId.value}),
+        FOREIGN KEY (${PartsShopsTableField.partsId.value}) REFERENCES ${PcPartsTableField.tableName.value}(${PcPartsTableField.id.value}) ON DELETE CASCADE)''',
         )
         // スペック情報テーブル
         ..execute(
-          '''CREATE TABLE ${PartsSpecsTableField.tableName} (
-        ${PartsSpecsTableField.id} INTEGER,
-        ${PartsSpecsTableField.partsId} INTEGER,
-        ${PartsSpecsTableField.specName} TEXT NOT NULL,
-        ${PartsSpecsTableField.specValue} TEXT,
-        PRIMARY KEY (${PartsSpecsTableField.id}, ${PartsSpecsTableField.partsId}),
-        FOREIGN KEY (${PartsSpecsTableField.partsId}) REFERENCES ${PcPartsTableField.tableName}(${PcPartsTableField.id}) ON DELETE CASCADE)''',
+          '''CREATE TABLE ${PartsSpecsTableField.tableName.value} (
+        ${PartsSpecsTableField.id.value} INTEGER,
+        ${PartsSpecsTableField.partsId.value} INTEGER,
+        ${PartsSpecsTableField.specName.value} TEXT NOT NULL,
+        ${PartsSpecsTableField.specValue.value} TEXT,
+        PRIMARY KEY (${PartsSpecsTableField.id.value}, ${PartsSpecsTableField.partsId.value}),
+        FOREIGN KEY (${PartsSpecsTableField.partsId.value}) REFERENCES ${PcPartsTableField.tableName.value}(${PcPartsTableField.id.value}) ON DELETE CASCADE)''',
         )
         // 画像テーブル
         ..execute(
-          '''CREATE TABLE ${FullScaleImagesTableField.tableName} (
-        ${FullScaleImagesTableField.id} INTEGER,
-        ${FullScaleImagesTableField.partsId} INTEGER,
-        ${FullScaleImagesTableField.imageUrl} TEXT NOT NULL,
-        PRIMARY KEY (${FullScaleImagesTableField.id}, ${FullScaleImagesTableField.partsId}),
-        FOREIGN KEY (${FullScaleImagesTableField.partsId}) REFERENCES ${PcPartsTableField.tableName}(${PcPartsTableField.id}) ON DELETE CASCADE)''',
+          '''CREATE TABLE ${FullScaleImagesTableField.tableName.value} (
+        ${FullScaleImagesTableField.id.value} INTEGER,
+        ${FullScaleImagesTableField.partsId.value} INTEGER,
+        ${FullScaleImagesTableField.imageUrl.value} TEXT NOT NULL,
+        PRIMARY KEY (${FullScaleImagesTableField.id.value}, ${FullScaleImagesTableField.partsId.value}),
+        FOREIGN KEY (${FullScaleImagesTableField.partsId.value}) REFERENCES ${PcPartsTableField.tableName.value}(${PcPartsTableField.id.value}) ON DELETE CASCADE)''',
         );
     },
     version: 1,
