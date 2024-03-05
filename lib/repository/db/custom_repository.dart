@@ -106,7 +106,9 @@ class CustomRepository {
   /// カスタムとパーツの関係情報取得
   /// @param customId 取得するカスタムのID
   /// @return 取得したPcPartsのID
-  static Future<List<String>> _selectCustomPartsRelation(String customId) async {
+  static Future<List<String>> _selectCustomPartsRelation(
+      String customId,) async {
+
     final db = await DatabaseModel.database;
     final List<Map<String, dynamic>> maps = await db.query(
       CustomPartsRelationTableField.tableName.value,
