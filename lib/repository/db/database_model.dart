@@ -46,7 +46,7 @@ class DatabaseModel {
         ..execute(
           '''CREATE TABLE ${PartsShopsTableField.tableName.value} (
         ${PartsShopsTableField.id.value} INTEGER,
-        ${PartsShopsTableField.partsId.value} INTEGER,
+        ${PartsShopsTableField.partsId.value} TEXT,
         ${PartsShopsTableField.rank.value} TEXT NOT NULL,
         ${PartsShopsTableField.price.value} INTEGER NOT NULL,
         ${PartsShopsTableField.bestPriceDiff.value} TEXT NOT NULL,
@@ -59,7 +59,7 @@ class DatabaseModel {
         ..execute(
           '''CREATE TABLE ${PartsSpecsTableField.tableName.value} (
         ${PartsSpecsTableField.id.value} INTEGER,
-        ${PartsSpecsTableField.partsId.value} INTEGER,
+        ${PartsSpecsTableField.partsId.value} TEXT,
         ${PartsSpecsTableField.specName.value} TEXT NOT NULL,
         ${PartsSpecsTableField.specValue.value} TEXT,
         PRIMARY KEY (${PartsSpecsTableField.id.value}, ${PartsSpecsTableField.partsId.value}),
@@ -69,7 +69,7 @@ class DatabaseModel {
         ..execute(
           '''CREATE TABLE ${FullScaleImagesTableField.tableName.value} (
         ${FullScaleImagesTableField.id.value} INTEGER,
-        ${FullScaleImagesTableField.partsId.value} INTEGER,
+        ${FullScaleImagesTableField.partsId.value} TEXT,
         ${FullScaleImagesTableField.imageUrl.value} TEXT NOT NULL,
         PRIMARY KEY (${FullScaleImagesTableField.id.value}, ${FullScaleImagesTableField.partsId.value}),
         FOREIGN KEY (${FullScaleImagesTableField.partsId.value}) REFERENCES ${PcPartsTableField.tableName.value}(${PcPartsTableField.id.value}) ON DELETE CASCADE)''',

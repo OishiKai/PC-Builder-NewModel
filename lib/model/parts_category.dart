@@ -23,29 +23,29 @@ enum PartsCategory {
     return 'https://kakaku.com/pc/$categoryParameter/itemlist.aspx';
   }
 
-  static PartsCategory fromCategoryName(String categoryName) {
-    switch (categoryName) {
-      case 'CPU':
+  static PartsCategory fromCategoryParameter(String categoryParameter) {
+    switch (categoryParameter) {
+      case 'cpu':
         return PartsCategory.cpu;
-      case 'CPUクーラー':
+      case 'cpu-cooler':
         return PartsCategory.cpuCooler;
-      case 'メモリー':
+      case 'pc-memory':
         return PartsCategory.memory;
-      case 'マザーボード':
+      case 'motherboard':
         return PartsCategory.motherboard;
-      case 'グラフィックボード・ビデオカード':
+      case 'videocard':
         return PartsCategory.graphicsCard;
-      case 'SSD':
+      case 'ssd':
         return PartsCategory.ssd;
-      case 'PCケース':
+      case 'pc-case':
         return PartsCategory.pcCase;
-      case '電源ユニット':
+      case 'power-supply':
         return PartsCategory.powerUnit;
-      case 'ケースファン':
+      case 'case-fan':
         return PartsCategory.caseFan;
       default:
         throw Exception(
-          'PartsCategory.fromCategoryName: $categoryName is not found.',
+          '$categoryParameter is not found.',
         );
     }
   }

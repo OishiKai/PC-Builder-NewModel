@@ -1,109 +1,104 @@
-import 'package:custom_pc_new_model/repository/db/database_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../model/parts_shop.dart';
+import '../../model/parts_category.dart';
 import '../../model/pc_parts.dart';
 import 'database_constants.dart';
+import 'database_model.dart';
+import 'full_scale_image_repository.dart';
+import 'parts_shop_repository.dart';
+import 'parts_spec_repository.dart';
 
 class PcPartsRepository {
   PcPartsRepository._();
+  static final String _tableName = PcPartsTableField.tableName.value;
+  static final String _id = PcPartsTableField.id.value;
+  static final String _maker = PcPartsTableField.maker.value;
+  static final String _isNew = PcPartsTableField.isNew.value;
+  static final String _title = PcPartsTableField.title.value;
+  static final String _star = PcPartsTableField.star.value;
+  static final String _evaluation = PcPartsTableField.evaluation.value;
+  static final String _price = PcPartsTableField.price.value;
+  static final String _ranked = PcPartsTableField.ranked.value;
+  static final String _image = PcPartsTableField.image.value;
+  static final String _detailUrl = PcPartsTableField.detailUrl.value;
 
   /// PcParts保存
   /// @param pcParts 保存するPcParts
-  /// @return 保存したPcPartsのID
-  static Future<int> insertPcParts(PcParts pcParts) async {
+  static Future<void> insertPcParts(PcParts pcParts) async {
     final map = {
-      PcPartsTableField.id.value: pcParts.id,
-      PcPartsTableField.maker.value: pcParts.maker,
-      PcPartsTableField.isNew.value: pcParts.isNew ? 1 : 0,
-      PcPartsTableField.title.value: pcParts.title,
-      PcPartsTableField.star.value: pcParts.star,
-      PcPartsTableField.evaluation.value: pcParts.evaluation,
-      PcPartsTableField.price.value: pcParts.price,
-      PcPartsTableField.ranked.value: pcParts.ranked,
-      PcPartsTableField.image.value: pcParts.image,
-      PcPartsTableField.detailUrl.value: pcParts.detailUrl,
+      _id: pcParts.id,
+      _maker: pcParts.maker,
+      _isNew: pcParts.isNew ? 1 : 0,
+      _title: pcParts.title,
+      _star: pcParts.star,
+      _evaluation: pcParts.evaluation,
+      _price: pcParts.price,
+      _ranked: pcParts.ranked,
+      _image: pcParts.image,
+      _detailUrl: pcParts.detailUrl,
     };
     final db = await DatabaseModel.database;
-    final partsId = await db.insert(
-      PcPartsTableField.tableName.value,
+    await db.insert(
+      _tableName,
       map,
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
-    await _insertPartsShops(pcParts.shops, partsId);
-    await _insertPartsSpecs(pcParts.specs, partsId);
-    await _insertFullScaleImages(pcParts.fullScaleImages, partsId);
-    return partsId;
+    await PartsShopRepository.insertPartsShops(
+      pcParts.shops,
+      pcParts.id,
+    );
+    await PartsSpecRepository.insertPartsSpecs(
+      pcParts.specs,
+      pcParts.id,
+    );
+    await FullScareImageRepository.insertFullScaleImages(
+      pcParts.fullScaleImages,
+      pcParts.id,
+    );
   }
 
-  /// 店情報保存
-  /// @param shops 保存する店情報
-  /// @param id 保存するPcPartsのID
-  static Future<void> _insertPartsShops(List<PartsShop>? shops, int id) async {
-    if (shops == null) {
-      return;
-    }
+  /// PcParts取得
+  /// @param id 取得するPcPartsのID
+  /// @return 取得したPcParts
+  static Future<PcParts?> selectPcPartsById(String id) async {
     final db = await DatabaseModel.database;
-    for (final shop in shops) {
-      final map = {
-        PartsShopsTableField.partsId.value: id,
-        PartsShopsTableField.rank.value: shop.rank,
-        PartsShopsTableField.price.value: shop.price,
-        PartsShopsTableField.bestPriceDiff.value: shop.bestPriceDiff,
-        PartsShopsTableField.name.value: shop.shopName,
-        PartsShopsTableField.pageUrl.value: shop.shopPageUrl,
-      };
-      await db.insert(
-        PartsShopsTableField.tableName.value,
-        map,
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+    final List<Map<String, dynamic>> maps = await db.query(
+      _tableName,
+      where: '$_id = ?',
+      whereArgs: [id],
+    );
+    if (maps.isEmpty) {
+      return null;
     }
-  }
 
-  /// スペック情報保存
-  /// @param specs 保存するスペック情報
-  /// @param id 保存するPcPartsのID
-  static Future<void> _insertPartsSpecs(
-      Map<String, String?>? specs, int id,) async {
-    if (specs == null) {
-      return;
-    }
-    final db = await DatabaseModel.database;
-    specs.forEach((key, value) async {
-      final map = {
-        PartsSpecsTableField.partsId.value: id,
-        PartsSpecsTableField.specName.value: key,
-        PartsSpecsTableField.specValue.value: value,
-      };
-      await db.insert(
-        PartsSpecsTableField.tableName.value,
-        map,
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    });
-  }
+    final partsMap = maps[0];
+    final shops = await PartsShopRepository.selectPartsShopsById(
+      partsMap[PartsShopsTableField.partsId.value] as String,
+    );
+    final specs = await PartsSpecRepository.selectSpecsById(
+      partsMap[PartsSpecsTableField.partsId.value] as String,
+    );
+    final images = await FullScareImageRepository.selectFullScaleImagesById(
+      partsMap[FullScaleImagesTableField.partsId] as String,
+    );
 
-  /// 画像情報保存
-  /// @param images 保存する画像情報
-  /// @param id 保存するPcPartsのID
-  static Future<void> _insertFullScaleImages(
-      List<String>? images, int id,) async {
-    if (images == null) {
-      return;
-    }
-    final db = await DatabaseModel.database;
-    for (final image in images) {
-      final map = {
-        FullScaleImagesTableField.partsId.value: id,
-        FullScaleImagesTableField.imageUrl.value: image,
-      };
-      await db.insert(
-        FullScaleImagesTableField.tableName.value,
-        map,
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    }
+    final i = PcParts(
+      maker: partsMap['maker'] as String,
+      isNew: partsMap['is_new'] == 1,
+      title: partsMap['title'] as String,
+      star: partsMap['star'] as int?,
+      evaluation: partsMap['evaluation'] as String?,
+      price: partsMap['price'] as String,
+      ranked: partsMap['ranked'] as String,
+      image: partsMap['image'] as String,
+      detailUrl: partsMap['detail_url'] as String,
+      shops: shops,
+      specs: specs,
+      fullScaleImages: images,
+      category: PartsCategory.cpu,
+      id: '',
+    );
+    return i;
   }
 }
