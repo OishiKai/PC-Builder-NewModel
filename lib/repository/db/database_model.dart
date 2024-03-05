@@ -19,11 +19,16 @@ class DatabaseModel {
         date TEXT NOT NULL
         )''',
         )
+        // カスタムとパーツの関係テーブル
+        ..execute(
+          '''CREATE TABLE custom_parts_relation (
+        custom_id TEXT PRIMARY KEY,
+        parts_id TEXT PRIMARY KEY)''',
+        )
         // パーツテーブル
         ..execute(
           '''CREATE TABLE pc_parts (
-        id INTEGER PRIMARY KEY,
-        custom_id TEXT,
+        id TEXT PRIMARY KEY,
         maker TEXT NOT NULL,
         is_new INTEGER NOT NULL,
         title TEXT NOT NULL,

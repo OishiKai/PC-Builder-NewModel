@@ -1,9 +1,9 @@
-import 'package:custom_pc_new_model/model/parts_category.dart';
-import 'package:custom_pc_new_model/repository/db/2.1.0/databese_model.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../../model/parts_category.dart';
 import '../../../model/parts_shop.dart';
 import '../../../model/pc_parts.dart';
+import 'databese_model.dart';
 
 class PcPartsRepository210 {
   PcPartsRepository210._();

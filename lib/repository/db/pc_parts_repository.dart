@@ -18,7 +18,7 @@ class PcPartsRepository {
       'ranked': pcParts.ranked,
       'image': pcParts.image,
       'detail_url': pcParts.detailUrl,
-      'category': pcParts.category?.categoryName,
+      'category': pcParts.category.categoryName,
     };
     final db = await DatabaseModel.database;
     final partsId = await db.insert(

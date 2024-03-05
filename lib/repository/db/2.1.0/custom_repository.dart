@@ -64,7 +64,8 @@ class CustomRepository210 {
       final date = custom['date']! as String;
 
       final cpu = await PcPartsRepository210.selectPcPartsById(
-          custom['cpu_id'] as int?);
+        custom['cpu_id'] as int?,
+      );
       final cpuCooler = await PcPartsRepository210.selectPcPartsById(
         custom['cpu_cooler_id'] as int?,
       );
@@ -78,7 +79,8 @@ class CustomRepository210 {
         custom['graphics_card_id'] as int?,
       );
       final ssd = await PcPartsRepository210.selectPcPartsById(
-          custom['ssd_id'] as int?);
+        custom['ssd_id'] as int?,
+      );
       final pcCase = await PcPartsRepository210.selectPcPartsById(
         custom['pc_case_id'] as int?,
       );
@@ -212,7 +214,8 @@ class CustomRepository210 {
       final date = custom['date']! as String;
 
       final cpu = await PcPartsRepository210.selectPcPartsById(
-          custom['cpu_id'] as int?);
+        custom['cpu_id'] as int?,
+      );
       final cpuCooler = await PcPartsRepository210.selectPcPartsById(
         custom['cpu_cooler_id'] as int?,
       );
@@ -226,7 +229,8 @@ class CustomRepository210 {
         custom['graphics_card_id'] as int?,
       );
       final ssd = await PcPartsRepository210.selectPcPartsById(
-          custom['ssd_id'] as int?);
+        custom['ssd_id'] as int?,
+      );
       final pcCase = await PcPartsRepository210.selectPcPartsById(
         custom['pc_case_id'] as int?,
       );
