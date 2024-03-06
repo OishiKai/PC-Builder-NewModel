@@ -19,7 +19,6 @@ class CustomRepository {
 
   /// カスタム情報保存
   /// @param 保存するカスタム
-  /// @param id 保存するPcPartsのID
   static Future<void> insertCustom(Custom custom) async {
     if (custom.parts == null) {
       return;
