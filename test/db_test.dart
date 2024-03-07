@@ -3,6 +3,7 @@ import 'package:custom_pc_new_model/model/parts_category.dart';
 import 'package:custom_pc_new_model/model/parts_shop.dart';
 import 'package:custom_pc_new_model/model/pc_parts.dart';
 import 'package:custom_pc_new_model/repository/db/custom_repository.dart';
+import 'package:custom_pc_new_model/repository/price.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -15,7 +16,7 @@ void main() {
     title: 'GALAKURO GAMING GG-RTX4070TiSP-E16GB/EX/TP [PCIExp 16GB]',
     star: 4,
     evaluation: '4.0',
-    price: '¥139,980',
+    price: Price('¥139,980'),
     ranked: '1',
     image: 'https://img1.kakaku.k-img.com/images/productimage/fullscale/K0001601183.jpg',
     detailUrl: 'https://kakaku.com/item/K0001601183/',
@@ -49,7 +50,7 @@ void main() {
       final custom = Custom(
         id: 'id',
         name: 'name',
-        totalPrice: '1000',
+        totalPrice: Price('1000'),
         parts: [aParts],
         date: '2021/1/1',
         compatibilities: [],
