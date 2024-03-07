@@ -1,3 +1,4 @@
+import 'package:custom_pc_new_model/repository/price.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../model/parts_category.dart';
@@ -16,7 +17,7 @@ class PcPartsRepository210 {
       'title': pcParts.title,
       'star': pcParts.star,
       'evaluation': pcParts.evaluation,
-      'price': pcParts.price,
+      'price': pcParts.price.stringPrice,
       'ranked': pcParts.ranked,
       'image': pcParts.image,
       'detail_url': pcParts.detailUrl,
@@ -121,7 +122,7 @@ class PcPartsRepository210 {
           title: map['title'] as String,
           star: map['star'] as int?,
           evaluation: map['evaluation'] as String?,
-          price: map['price'] as String,
+          price: Price(map['price'] as String),
           ranked: map['ranked'] as String,
           image: map['image'] as String,
           detailUrl: map['detail_url'] as String,
@@ -158,7 +159,7 @@ class PcPartsRepository210 {
       title: maps[0]['title'] as String,
       star: maps[0]['star'] as int?,
       evaluation: maps[0]['evaluation'] as String?,
-      price: maps[0]['price'] as String,
+      price: Price(maps[0]['price'] as String),
       ranked: maps[0]['ranked'] as String,
       image: maps[0]['image'] as String,
       detailUrl: maps[0]['detail_url'] as String,

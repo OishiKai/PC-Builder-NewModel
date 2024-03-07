@@ -94,7 +94,7 @@ class CustomRepository {
           id: id,
           name: name,
           parts: partsList,
-          totalPrice: price,
+          totalPrice: Price(price),
           date: date,
         ),
       );

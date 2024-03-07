@@ -3,6 +3,7 @@ import 'package:html/dom.dart';
 import '../../model/parts_category.dart';
 import '../../model/pc_parts.dart';
 import '../document_repository.dart';
+import '../price.dart';
 
 class PartsListRepository {
   PartsListRepository(this.url, this.category);
@@ -87,7 +88,7 @@ class PartsListRepository {
           title: title,
           star: star,
           evaluation: evaluation,
-          price: price,
+          price: Price(price),
           ranked: ranked,
           image: imageUrl,
           detailUrl: detailUrl,

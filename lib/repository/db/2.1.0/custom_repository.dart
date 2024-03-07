@@ -4,6 +4,7 @@ import 'package:uuid/uuid.dart';
 import '../../../model/custom.dart';
 import '../../../model/parts_category.dart';
 import '../../../model/pc_parts.dart';
+import '../../price.dart';
 import 'databese_model.dart';
 import 'pc_parts_repository.dart';
 
@@ -106,7 +107,7 @@ class CustomRepository210 {
       customList[id] = Custom(
         id: id,
         name: name,
-        totalPrice: price,
+        totalPrice: Price(price),
         parts: parts.whereType<PcParts>().toList(),
         date: date,
       );
@@ -257,7 +258,7 @@ class CustomRepository210 {
         Custom(
           id: id,
           name: name,
-          totalPrice: price,
+          totalPrice: Price(price),
           parts: parts.whereType<PcParts>().toList(),
           date: date,
         ),

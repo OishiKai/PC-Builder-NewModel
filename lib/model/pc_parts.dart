@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../repository/price.dart';
 import 'parts_category.dart';
 import 'parts_shop.dart';
 
@@ -15,7 +16,7 @@ class PcParts with _$PcParts {
     required String title,
     required int? star,
     required String? evaluation,
-    required String price,
+    required Price price,
     required String ranked,
     required String image,
     required String detailUrl,

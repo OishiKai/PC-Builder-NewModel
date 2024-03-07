@@ -2,6 +2,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../model/parts_category.dart';
 import '../../model/pc_parts.dart';
+import '../price.dart';
 import 'database_constants.dart';
 import 'database_model.dart';
 import 'full_scale_image_repository.dart';
@@ -38,7 +39,7 @@ class PcPartsRepository {
       _title: pcParts.title,
       _star: pcParts.star,
       _evaluation: pcParts.evaluation,
-      _price: pcParts.price,
+      _price: pcParts.price.stringPrice,
       _ranked: pcParts.ranked,
       _image: pcParts.image,
       _detailUrl: pcParts.detailUrl,
@@ -99,7 +100,7 @@ class PcPartsRepository {
       title: partsMap[_title] as String,
       star: partsMap[_star] as int?,
       evaluation: partsMap[_evaluation] as String?,
-      price: partsMap[_price] as String,
+      price: Price(partsMap[_price] as String),
       ranked: partsMap[_ranked] as String,
       image: partsMap[_image] as String,
       detailUrl: partsMap[_detailUrl] as String,

@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Custom {
   String? get id => throw _privateConstructorUsedError; // Custom名
   String? get name => throw _privateConstructorUsedError; // 総額
-  String? get totalPrice => throw _privateConstructorUsedError; // 各パーツ
+  Price? get totalPrice => throw _privateConstructorUsedError; // 各パーツ
   List<PcParts>? get parts => throw _privateConstructorUsedError; // 保存日
   String? get date => throw _privateConstructorUsedError; // 互換性のリスト
   List<PartsCompatibility>? get compatibilities =>
@@ -36,7 +36,7 @@ abstract class $CustomCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
-      String? totalPrice,
+      Price? totalPrice,
       List<PcParts>? parts,
       String? date,
       List<PartsCompatibility>? compatibilities});
@@ -74,7 +74,7 @@ class _$CustomCopyWithImpl<$Res, $Val extends Custom>
       totalPrice: freezed == totalPrice
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Price?,
       parts: freezed == parts
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
@@ -101,7 +101,7 @@ abstract class _$$CustomImplCopyWith<$Res> implements $CustomCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
-      String? totalPrice,
+      Price? totalPrice,
       List<PcParts>? parts,
       String? date,
       List<PartsCompatibility>? compatibilities});
@@ -137,7 +137,7 @@ class __$$CustomImplCopyWithImpl<$Res>
       totalPrice: freezed == totalPrice
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Price?,
       parts: freezed == parts
           ? _value._parts
           : parts // ignore: cast_nullable_to_non_nullable
@@ -174,7 +174,7 @@ class _$CustomImpl implements _Custom {
   final String? name;
 // 総額
   @override
-  final String? totalPrice;
+  final Price? totalPrice;
 // 各パーツ
   final List<PcParts>? _parts;
 // 各パーツ
@@ -243,7 +243,7 @@ abstract class _Custom implements Custom {
   const factory _Custom(
       {final String? id,
       final String? name,
-      final String? totalPrice,
+      final Price? totalPrice,
       final List<PcParts>? parts,
       final String? date,
       final List<PartsCompatibility>? compatibilities}) = _$CustomImpl;
@@ -253,7 +253,7 @@ abstract class _Custom implements Custom {
   @override // Custom名
   String? get name;
   @override // 総額
-  String? get totalPrice;
+  Price? get totalPrice;
   @override // 各パーツ
   List<PcParts>? get parts;
   @override // 保存日

@@ -16,7 +16,7 @@ abstract class Custom with _$Custom {
     // Custom名
     String? name,
     // 総額
-    String? totalPrice,
+    Price? totalPrice,
     // 各パーツ
     List<PcParts>? parts,
 
@@ -35,7 +35,7 @@ extension CustomExtension on Custom {
     }
     var totalPrice = 0;
     for (final p in parts!) {
-      totalPrice += Price(p.price).intPrice;
+      totalPrice += p.price.intPrice;
     }
     return totalPrice;
   }
@@ -77,7 +77,7 @@ extension CustomExtension on Custom {
       return '';
     }
     final mainParts = parts!.reduce(
-      (a, b) => Price(a.price).intPrice > Price(b.price).intPrice ? a : b,
+      (a, b) => a.price.intPrice > b.price.intPrice ? a : b,
     );
     return mainParts.image;
   }

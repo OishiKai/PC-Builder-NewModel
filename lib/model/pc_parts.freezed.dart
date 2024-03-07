@@ -23,7 +23,7 @@ mixin _$PcParts {
   String get title => throw _privateConstructorUsedError;
   int? get star => throw _privateConstructorUsedError;
   String? get evaluation => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
+  Price get price => throw _privateConstructorUsedError;
   String get ranked => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get detailUrl => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $PcPartsCopyWith<$Res> {
       String title,
       int? star,
       String? evaluation,
-      String price,
+      Price price,
       String ranked,
       String image,
       String detailUrl,
@@ -117,7 +117,7 @@ class _$PcPartsCopyWithImpl<$Res, $Val extends PcParts>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Price,
       ranked: null == ranked
           ? _value.ranked
           : ranked // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ abstract class _$$PcPartsImplCopyWith<$Res> implements $PcPartsCopyWith<$Res> {
       String title,
       int? star,
       String? evaluation,
-      String price,
+      Price price,
       String ranked,
       String image,
       String detailUrl,
@@ -228,7 +228,7 @@ class __$$PcPartsImplCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Price,
       ranked: null == ranked
           ? _value.ranked
           : ranked // ignore: cast_nullable_to_non_nullable
@@ -294,7 +294,7 @@ class _$PcPartsImpl implements _PcParts {
   @override
   final String? evaluation;
   @override
-  final String price;
+  final Price price;
   @override
   final String ranked;
   @override
@@ -395,7 +395,7 @@ abstract class _PcParts implements PcParts {
       required final String title,
       required final int? star,
       required final String? evaluation,
-      required final String price,
+      required final Price price,
       required final String ranked,
       required final String image,
       required final String detailUrl,
@@ -418,7 +418,7 @@ abstract class _PcParts implements PcParts {
   @override
   String? get evaluation;
   @override
-  String get price;
+  Price get price;
   @override
   String get ranked;
   @override

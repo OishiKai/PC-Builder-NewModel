@@ -1,11 +1,9 @@
 class Price {
   Price(this._value) {
     if (_value is int) {
-      intPrice = _value;
-      stringPrice = _intToString();
+      _intToString(_value);
     } else if (_value is String) {
-      stringPrice = _value;
-      intPrice = _stringToInt();
+      _stringToInt(_value);
     }
   }
 
@@ -14,8 +12,9 @@ class Price {
   String stringPrice = '¥0';
 
   /// 1000 to "¥1,000"
-  String _intToString() {
-    final sValue = intPrice.toString();
+  void _intToString(int intObject) {
+    intPrice = intObject;
+    final sValue = intObject.toString();
     final buffer = StringBuffer()..write('¥');
     for (var i = 0; i < sValue.length; i++) {
       if (i > 0 && (sValue.length - i) % 3 == 0) {
@@ -23,13 +22,29 @@ class Price {
       }
       buffer.write(sValue[i]);
     }
-    return buffer.toString();
+    stringPrice = buffer.toString();
   }
 
   /// "¥1,000" to 1000
-  int _stringToInt() {
+  void _stringToInt(String stringObject) {
+    if (stringObject.isEmpty) {
+      intPrice = 0;
+      stringPrice = '¥0';
+      return;
+    }
+
+    if (int.tryParse(stringObject) != null) {
+      _intToString(int.parse(stringObject));
+    }
+
     final normalizedPrice =
-        stringPrice.trim().replaceAll('¥', '').replaceAll(',', '');
-    return normalizedPrice.isEmpty ? 0 : int.parse(normalizedPrice);
+    stringObject.trim().replaceAll('¥', '').replaceAll(',', '');
+
+    if (int.tryParse(normalizedPrice) != null) {
+      _intToString(int.parse(normalizedPrice));
+    } else {
+      intPrice = 0;
+      stringPrice = '¥0';
+    }
   }
 }
