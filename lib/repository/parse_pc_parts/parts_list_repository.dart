@@ -20,7 +20,7 @@ class PartsListRepository {
   static const _partsPriceSelector = 'td.td-price > ul > li.pryen > a';
   static const _patsRankedSelector = 'td.swrank2 > span';
 
-  Future<List<PcParts>> fetch(String url, PartsCategory category) async {
+  Future<List<PcParts>> fetch() async {
     final document = await DocumentRepository(url).fetchDocument();
     final partsList = _parsePartsList(document, category);
     return partsList;
